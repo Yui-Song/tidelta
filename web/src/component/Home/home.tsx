@@ -1,33 +1,16 @@
 import React from "react";
 import Box from "@mui/material/Box";
-import { Outlet } from "react-router-dom";
-import { Grid, Toolbar } from "@mui/material";
-import Divider from '@mui/material/Divider';
-import TextField from '@mui/material/TextField';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
-import LocalizationProvider from '@mui/lab/LocalizationProvider';
-import DatePicker from '@mui/lab/DatePicker';
 import { useForm } from "react-hook-form";
+import { SelectChangeEvent } from '@mui/material/Select';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-import { inputVerify } from "@/component/Home/util/input-verify";
-import { 
+import {
     HomeBoxSX,
-    HomeSelectSX,
-    HomeGraphSX,
-    HomeSelectOneSX,
-    HomeSelectOneTitleSX,
-    DividerStyle,
-    HomeInputSX,
-    HomeSelectDateFromSX,
-    HomeInputHostSX,
-    HomeInputHostTextSX,
-    HomeSelectDateToSX,
-    HomeSelectDateFromComponentSX,
-    HomeSelectDateFromContainerSX,
 } from '@/component/Home/style';
+import ParamComponent from "@/component/Home/chirldren/param";
+import GraphChirldren from "@/component/Home/chirldren/graph";
 
 export default function Home() {
 
@@ -35,190 +18,73 @@ export default function Home() {
 
     const [hostError1, setHostError1] = React.useState<boolean>(false);
     const [portError1, setPortError1] = React.useState<boolean>(false);
+    const [hostError2, setHostError2] = React.useState<boolean>(false);
+    const [portError2, setPortError2] = React.useState<boolean>(false);
     const [dateFrom1, setDateFrom1] = React.useState<Date | null>(null);
     const [dateTo1, setDateTo1] = React.useState<Date | null>(null);
     const [dateFrom2, setDateFrom2] = React.useState<Date | null>(null);
-    const [dateTo2, setDateTo2] = React.useState<Date | null>(null);
+    const [dateTo2, setDateTo2] = React.useState<Date | null>(null);    
+    const [dashboard, setDashboard] = React.useState('');
+    const [tabs, setTabs] = React.useState(0);
 
-    return(
+    const handleTabsChange = (event: React.SyntheticEvent, newValue: number) => {
+        setTabs(newValue);
+    };
+
+    const handleChange = (event: SelectChangeEvent) => {
+        setDashboard(event.target.value as string);
+    };
+
+    const onSubmits = (data: any, e: any) => {
+        console.log("[data]: ", data);
+    };
+
+    const onError = (errors: any, e: any) => {
+        if (errors.host1) {
+            setHostError1(true);
+        };
+        if (errors.host2) {
+            setHostError2(true);
+        };
+        if (errors.port1) {
+            setPortError1(true);
+        };
+        if (errors.port2) {
+            setPortError2(true);
+        };
+    };
+
+    return (
         <Box sx={HomeBoxSX()}>
-            <Grid item xs={3} sx={HomeSelectSX()}>
-                <Box sx={HomeSelectOneSX()}>
-                    <Grid sx={HomeSelectOneTitleSX()}>
-                        Data source 1
-                    </Grid>
-                    <Divider sx={DividerStyle()}/>
-                    <Grid item sx={HomeInputSX()}>
-                        <Grid item xs={8} sx={HomeInputHostSX()}>
-                            <TextField
-                                id={"data-source-1-input-host"} 
-                                label={"Host"}
-                                variant="outlined" 
-                                sx={HomeInputHostTextSX()}                                        
-                                error={hostError1}
-                                autoComplete="false"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                {...register("host", inputVerify("host"))}
-                            />
-                            {errors["host"] &&
-                                <span className={"form-dialog-input-error-tip"}>
-                                    {errors["host"].message}
-                                </span>
-                            }
-                        </Grid>
-                        <Grid item xs={4}>
-                            <TextField
-                                id={"data-source-1-input-port"} 
-                                label={"Port"}
-                                variant="outlined" 
-                                sx={HomeInputHostTextSX()}                                        
-                                error={portError1}
-                                autoComplete="false"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                {...register("port", inputVerify("port"))}
-                            />
-                            {errors["port"] &&
-                                <span className={"form-dialog-input-error-tip"}>
-                                    {errors["port"].message}
-                                </span>
-                            }
-                        </Grid>                        
-                    </Grid>
-                    <Grid item sx={HomeSelectDateFromSX()}>
-                        <Grid item sx={HomeSelectDateFromContainerSX()}>
-                            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                <DatePicker
-                                    label="Date from"
-                                    value={dateFrom1}
-                                    onChange={(newValue) => {
-                                        setDateFrom1(newValue);
-                                    }}                                    
-                                    renderInput={
-                                        (params) => 
-                                        <TextField
-                                            {...params} 
-                                            sx={HomeSelectDateFromComponentSX()}
-                                        />
-                                    }                                
-                                />
-                            </LocalizationProvider>
-                        </Grid>
-                    </Grid>
-                    <Grid item sx={HomeSelectDateToSX()}>
-                        <Grid item sx={HomeSelectDateFromContainerSX()}>
-                            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                <DatePicker
-                                    label="Date to"
-                                    value={dateTo1}
-                                    onChange={(newValue) => {
-                                        setDateTo1(newValue);
-                                    }}
-                                    renderInput={
-                                        (params) => 
-                                        <TextField
-                                            {...params} 
-                                            sx={HomeSelectDateFromComponentSX()}
-                                        />
-                                    }                                
-                                />
-                            </LocalizationProvider>
-                        </Grid>
-                    </Grid>
-                </Box>
-                <Box sx={HomeSelectOneSX()}>
-                    <Grid sx={HomeSelectOneTitleSX()}>
-                        Data source 2
-                    </Grid>
-                    <Divider sx={DividerStyle()}/>
-                    <Grid item sx={HomeInputSX()}>
-                        <Grid item xs={8} sx={HomeInputHostSX()}>
-                            <TextField
-                                id={"data-source-1-input-host"} 
-                                label={"Host"}
-                                variant="outlined" 
-                                sx={HomeInputHostTextSX()}                                        
-                                error={hostError1}
-                                autoComplete="false"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                {...register("host", inputVerify("host"))}
-                            />
-                            {errors["host"] &&
-                                <span className={"form-dialog-input-error-tip"}>
-                                    {errors["host"].message}
-                                </span>
-                            }
-                        </Grid>
-                        <Grid item xs={4}>
-                            <TextField
-                                id={"data-source-1-input-port"} 
-                                label={"Port"}
-                                variant="outlined" 
-                                sx={HomeInputHostTextSX()}                                        
-                                error={portError1}
-                                autoComplete="false"
-                                InputLabelProps={{
-                                    shrink: true,
-                                }}
-                                {...register("port", inputVerify("port"))}
-                            />
-                            {errors["port"] &&
-                                <span className={"form-dialog-input-error-tip"}>
-                                    {errors["port"].message}
-                                </span>
-                            }
-                        </Grid>                        
-                    </Grid>
-                    <Grid item sx={HomeSelectDateFromSX()}>
-                        <Grid item sx={HomeSelectDateFromContainerSX()}>
-                            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                <DatePicker
-                                    label="Date from"
-                                    value={dateFrom2}
-                                    onChange={(newValue) => {
-                                        setDateFrom2(newValue);
-                                    }}                                    
-                                    renderInput={
-                                        (params) => 
-                                        <TextField
-                                            {...params} 
-                                            sx={HomeSelectDateFromComponentSX()}
-                                        />
-                                    }                                
-                                />
-                            </LocalizationProvider>
-                        </Grid>
-                    </Grid>
-                    <Grid item sx={HomeSelectDateToSX()}>
-                        <Grid item sx={HomeSelectDateFromContainerSX()}>
-                            <LocalizationProvider dateAdapter={AdapterDateFns}>
-                                <DatePicker
-                                    label="Date to"
-                                    value={dateTo2}
-                                    onChange={(newValue) => {
-                                        setDateTo2(newValue);
-                                    }}
-                                    renderInput={
-                                        (params) => 
-                                        <TextField
-                                            {...params} 
-                                            sx={HomeSelectDateFromComponentSX()}
-                                        />
-                                    }                                
-                                />
-                            </LocalizationProvider>
-                        </Grid>
-                    </Grid>
-                </Box>
-            </Grid>
-            <Grid item sx={HomeGraphSX()}>
-                456
-            </Grid>
+            <form 
+                onSubmit={handleSubmit(onSubmits, onError)} 
+                style={{ flex: 1, display: 'flex', height: "100%", }}
+            >
+                {/* 左边参数组件 */}
+                <ParamComponent 
+                    hostError1={hostError1}
+                    register={register}
+                    errors={errors}
+                    portError1={portError1}
+                    dateFrom1={dateFrom1}
+                    setDateFrom1={setDateFrom1}
+                    dateTo1={dateTo1}
+                    setDateTo1={setDateTo1}
+                    hostError2={hostError2}
+                    dateFrom2={dateFrom2}
+                    setDateFrom2={setDateFrom2}
+                    dateTo2={dateTo2}
+                    setDateTo2={setDateTo2}
+                    portError2={portError2}
+                    dashboard={dashboard}
+                    handleChange={handleChange}
+                />
+                {/* 右边展示组件 */}
+                <GraphChirldren
+                    tabs={tabs}
+                    handleTabsChange={handleTabsChange}
+                />
+            </form>
         </Box>
     );
 }
