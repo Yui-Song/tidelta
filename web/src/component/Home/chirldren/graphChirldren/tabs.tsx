@@ -2,7 +2,6 @@
 import React from "react";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import dashboardJson from "@/resource/data/select-panel/dashboard.json";
 
 function a11yProps(index: number) {
     return {
@@ -22,12 +21,6 @@ export default function TabsChirldren(props: TabsChirldrenProps) {
         tabs,
         handleTabsChange,
     } = props;
-    
-    React.useEffect(() => {
-        dashboardJson.forEach((obj, ind) => {
-            console.log(ind, obj.title);
-        });
-    }, []);
 
     return (
         <Tabs

@@ -21,6 +21,9 @@ import {
     HomeSelectDateToSX,
 } from '@/component/Home/style';
 import { getDashboardsList } from "@/api/api-grafana";
+import dashboardList from "@/resource/data/param/dashboardList";
+import dashboardJson from "@/resource/data/select-panel/dashboard.json";
+import BackupImportJson from "@/resource/data/select-panel/row/0.Backup&Import.json";
 
 interface SelectChirldrenProps {
     dashboard: string,
@@ -40,9 +43,16 @@ export default function SelectChirldren(props: SelectChirldrenProps) {
         handleRowChange,
         graph,
         handleGraphChange,
-    } = props;
+    } = props;    
 
-    const dashboardList: Array<string> = [];
+    React.useEffect(() => {
+        let rowData: Array<string> = [];
+        BackupImportJson.panels.forEach((obj) => {
+            rowData.push(obj.title);
+        });
+        console.log(rowData);
+        
+    }, []);
 
     React.useEffect(() => {
         const host = "http://18.237.4.239:3000/";
@@ -57,13 +67,11 @@ export default function SelectChirldren(props: SelectChirldrenProps) {
             prevSort: null,
             type: "dash-db",
         };
-
         // getDashboardsList(host, cookie, params).then((response) => {
         //     console.log("[#002] getDashboardsList: ", response);
         // }).catch((err) => {
         //     console.log("[#l001] error:", err);            
         // });
-
     }, []);
 
     return (
@@ -89,15 +97,13 @@ export default function SelectChirldren(props: SelectChirldrenProps) {
                                 onChange={handleChange}
                                 sx={{ maxHeight: '100px', overflowY: "auto" }}
                             >
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
-                                <MenuItem value={50}>Thirty</MenuItem>
-                                <MenuItem value={40}>Thirty</MenuItem>
-                                <MenuItem value={60}>Thirty</MenuItem>
-                                <MenuItem value={70}>Thirty</MenuItem>
-                                <MenuItem value={80}>Thirty</MenuItem>
-                                <MenuItem value={90}>Thirty</MenuItem>
+                                {
+                                    dashboardList?.map((d, k) => (
+                                        <MenuItem value={(k * 10)} key={"dashboard" + k}>
+                                            {d}
+                                        </MenuItem>
+                                    ))
+                                }
                             </Select>
                         </FormControl>
                     </Box>
