@@ -29,3 +29,8 @@ code {
     color: #dd3d31;    
     position: absolute;
 }
+
+.HomeRawMetricsGraph {
+    /* border-radius: 8px; */
+    border: 1px solid #202226;
+}

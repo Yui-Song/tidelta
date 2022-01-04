@@ -20,6 +20,7 @@ import {
     HomeSelectDateFromSX,
     HomeSelectDateToSX,
 } from '@/component/Home/style';
+import { getDashboardsList } from "@/api/api-grafana";
 
 interface SelectChirldrenProps {
     dashboard: string,
@@ -41,11 +42,35 @@ export default function SelectChirldren(props: SelectChirldrenProps) {
         handleGraphChange,
     } = props;
 
+    const dashboardList: Array<string> = [];
+
+    React.useEffect(() => {
+        const host = "http://18.237.4.239:3000/";
+        const cookie = "grafana_session_3000=00218d99996a3f332f7418445039b74a; grafana_session_3000=2d2c687f55dbb7f2f84d2288ac244459";
+        const params = {
+            query: null,
+            starred: false,
+            skipRecent: true,
+            skipStarred: true,
+            folderIds: 1,
+            layout: "list",
+            prevSort: null,
+            type: "dash-db",
+        };
+
+        // getDashboardsList(host, cookie, params).then((response) => {
+        //     console.log("[#002] getDashboardsList: ", response);
+        // }).catch((err) => {
+        //     console.log("[#l001] error:", err);            
+        // });
+
+    }, []);
+
     return (
         <Box sx={HomeSelectOneSX()}>
             <Grid sx={HomeSelectOneTitleSX()}>
                 Select panel
-                </Grid>
+            </Grid>
             <Divider sx={DividerStyle()} />
             <ThemeProvider theme={SelectPanelTheme}>
                 <Grid item sx={HomeInputSX()}>
@@ -55,7 +80,7 @@ export default function SelectChirldren(props: SelectChirldrenProps) {
                                 id="select-dashboard"
                             >
                                 Dashboard
-                                </InputLabel>
+                            </InputLabel>
                             <Select
                                 labelId="select-dashboard"
                                 id="dashboard-simple-select"
@@ -84,7 +109,7 @@ export default function SelectChirldren(props: SelectChirldrenProps) {
                                 id="select-row"
                             >
                                 Row
-                                </InputLabel>
+                            </InputLabel>
                             <Select
                                 labelId="select-row"
                                 id="row-simple-select"
@@ -112,7 +137,7 @@ export default function SelectChirldren(props: SelectChirldrenProps) {
                                 id="select-graph"
                             >
                                 Graph
-                                </InputLabel>
+                            </InputLabel>
                             <Select
                                 labelId="select-graph"
                                 id="graph-simple-select"

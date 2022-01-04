@@ -25,6 +25,7 @@
     "react-hook-form": "^7.22.5",
     "react-router-dom": "^6.1.1",
     "typescript": "^4.4.4",
+    "umi-request": "^1.4.0",
     "vite": "^2.7.0"
   }
 }
