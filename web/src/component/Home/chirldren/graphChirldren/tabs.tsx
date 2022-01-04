@@ -2,6 +2,7 @@
 import React from "react";
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+import dashboardJson from "@/resource/data/select-panel/dashboard.json";
 
 function a11yProps(index: number) {
     return {
@@ -21,6 +22,12 @@ export default function TabsChirldren(props: TabsChirldrenProps) {
         tabs,
         handleTabsChange,
     } = props;
+    
+    React.useEffect(() => {
+        dashboardJson.forEach((obj, ind) => {
+            console.log(ind, obj.title);
+        });
+    }, []);
 
     return (
         <Tabs
@@ -38,8 +45,8 @@ export default function TabsChirldren(props: TabsChirldrenProps) {
                 }
             }}
         >
-            <Tab label="Diff report" {...a11yProps(0)} />
-            <Tab label="Config diff" {...a11yProps(1)} />
+            <Tab label="Metrics Diff" {...a11yProps(0)} />
+            <Tab label="Config Diff" {...a11yProps(1)} />
             <Tab label="Raw Metrics" {...a11yProps(2)} />
         </Tabs>
     );
