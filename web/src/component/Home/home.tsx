@@ -8,6 +8,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import {
     HomeBoxSX,
+    HomeFormSX
 } from '@/component/Home/style';
 import ParamComponent from "@/component/Home/chirldren/param";
 import GraphChirldren from "@/component/Home/chirldren/graph";
@@ -24,11 +25,21 @@ export default function Home() {
     const [dateTo1, setDateTo1] = React.useState<Date | null>(null);
     const [dateFrom2, setDateFrom2] = React.useState<Date | null>(null);
     const [dateTo2, setDateTo2] = React.useState<Date | null>(null);    
-    const [dashboard, setDashboard] = React.useState('');
-    const [tabs, setTabs] = React.useState(0);
+    const [dashboard, setDashboard] = React.useState<string>(''); // 一级下拉框
+    const [row, setRow] = React.useState<string>(''); // 二级下拉框
+    const [graph, setGraph] = React.useState<string>(''); // 三级下拉框
+    const [tabs, setTabs] = React.useState(0); // 标签页
 
     const handleTabsChange = (event: React.SyntheticEvent, newValue: number) => {
         setTabs(newValue);
+    };
+
+    const handleGraphChange = (event: SelectChangeEvent) => {
+        setGraph(event.target.value as string);
+    };
+
+    const handleRowChange = (event: SelectChangeEvent) => {
+        setRow(event.target.value as string);
     };
 
     const handleChange = (event: SelectChangeEvent) => {
@@ -58,7 +69,7 @@ export default function Home() {
         <Box sx={HomeBoxSX()}>
             <form 
                 onSubmit={handleSubmit(onSubmits, onError)} 
-                style={{ flex: 1, display: 'flex', height: "100%", }}
+                style={HomeFormSX()}
             >
                 {/* 左边参数组件 */}
                 <ParamComponent 
@@ -78,6 +89,10 @@ export default function Home() {
                     portError2={portError2}
                     dashboard={dashboard}
                     handleChange={handleChange}
+                    row={row}
+                    handleRowChange={handleRowChange}
+                    graph={graph}
+                    handleGraphChange={handleGraphChange}
                 />
                 {/* 右边展示组件 */}
                 <GraphChirldren

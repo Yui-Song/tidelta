@@ -68,6 +68,13 @@ export const HomeBoxSX = ():SxProps<Theme> => {
         backgroundColor: "#0b0c0e",
     };
 };
+export const HomeFormSX = ():React.CSSProperties | undefined => {
+    return { 
+        flex: 1, 
+        display: 'flex', 
+        height: "100%", 
+    };
+};
 export const HomeSelectSX = ():SxProps<Theme> => {
     return {
         padding: 2,
