@@ -38,8 +38,8 @@ export default function TabsChirldren(props: TabsChirldrenProps) {
                 }
             }}
         >
-            <Tab label="Diff report" {...a11yProps(0)} />
-            <Tab label="Config diff" {...a11yProps(1)} />
+            <Tab label="Metrics Diff" {...a11yProps(0)} />
+            <Tab label="Config Diff" {...a11yProps(1)} />
             <Tab label="Raw Metrics" {...a11yProps(2)} />
         </Tabs>
     );

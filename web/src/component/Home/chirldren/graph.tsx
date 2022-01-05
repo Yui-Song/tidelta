@@ -29,13 +29,7 @@ export default function GraphChirldren(props: GraphChirldrenProps) {
         <Grid item sx={HomeGraphSX()}>
             <Box
                 sx={{ flex: 1,bgcolor: '#0b0c0e', display: 'flex'}}
-            >
-
-                <TabsChirldren 
-                    tabs={tabs}
-                    handleTabsChange={handleTabsChange}
-                />
-
+            >                
                 <TabPanel value={tabs} index={0}>
                     
                 </TabPanel>
@@ -45,7 +39,7 @@ export default function GraphChirldren(props: GraphChirldrenProps) {
                 </TabPanel>
                 
                 <TabPanel value={tabs} index={2}>
-                    <Grid item xs={12} sx={{ paddingBottom: "8px",}}>
+                    <Grid item xs={12} sx={{ marginBottom: "8px",}} className={"HomeRawMetricsGraph"}>
                         <iframe 
                             src="http://18.237.4.239:3000/d-solo/000000011/aws-test-v530-tidb?orgId=1&refresh=30s&from=1641206337164&to=1641209937164&panelId=80" 
                             width="100%" 
@@ -53,7 +47,7 @@ export default function GraphChirldren(props: GraphChirldrenProps) {
                             frameBorder="0">
                         </iframe>
                     </Grid>
-                    <Grid item xs={12} sx={{ paddingTop: "8px",}}>
+                    <Grid item xs={12} sx={{ marginTop: "8px",paddingBottom: "1px"}} className={"HomeRawMetricsGraph"}>
                         <iframe 
                             src="http://18.237.4.239:3000/d-solo/000000011/aws-test-v530-tidb?orgId=1&refresh=30s&from=1641208996525&to=1641212596525&panelId=6" 
                             width="100%" 
@@ -62,7 +56,11 @@ export default function GraphChirldren(props: GraphChirldrenProps) {
                         >                                    
                         </iframe>
                     </Grid>
-                </TabPanel>                
+                </TabPanel>
+                <TabsChirldren 
+                    tabs={tabs}
+                    handleTabsChange={handleTabsChange}
+                />
             </Box>
         </Grid>
     );
