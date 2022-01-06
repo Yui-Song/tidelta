@@ -32,6 +32,8 @@ interface SelectChirldrenProps {
     handleRowChange: (event: SelectChangeEvent) => void,
     graph: string,
     handleGraphChange: (event: SelectChangeEvent) => void,
+    rowSelectData: any,
+    graphSelectData: any,
 };
 
 export default function SelectChirldren(props: SelectChirldrenProps) {
@@ -43,16 +45,9 @@ export default function SelectChirldren(props: SelectChirldrenProps) {
         handleRowChange,
         graph,
         handleGraphChange,
+        rowSelectData,
+        graphSelectData
     } = props;    
-
-    React.useEffect(() => {
-        let rowData: Array<string> = [];
-        BackupImportJson.panels.forEach((obj) => {
-            rowData.push(obj.title);
-        });
-        console.log(rowData);
-        
-    }, []);
 
     React.useEffect(() => {
         const host = "http://18.237.4.239:3000/";
@@ -99,7 +94,7 @@ export default function SelectChirldren(props: SelectChirldrenProps) {
                             >
                                 {
                                     dashboardList?.map((d, k) => (
-                                        <MenuItem value={(k * 10)} key={"dashboard" + k}>
+                                        <MenuItem value={k} key={"dashboard" + k}>
                                             {d}
                                         </MenuItem>
                                     ))
@@ -123,15 +118,13 @@ export default function SelectChirldren(props: SelectChirldrenProps) {
                                 label="Row"
                                 onChange={handleRowChange}
                             >
-                                <MenuItem value={10}>Row</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
-                                <MenuItem value={50}>Thirty</MenuItem>
-                                <MenuItem value={40}>Thirty</MenuItem>
-                                <MenuItem value={60}>Thirty</MenuItem>
-                                <MenuItem value={70}>Thirty</MenuItem>
-                                <MenuItem value={80}>Thirty</MenuItem>
-                                <MenuItem value={90}>Thirty</MenuItem>
+                                {
+                                    rowSelectData?.panels?.map((p: any, k: number) => (
+                                        <MenuItem value={k} key={"row" + k}>
+                                            {p?.title}
+                                        </MenuItem>
+                                    ))
+                                }                                                                
                             </Select>
                         </FormControl>
                     </Box>
@@ -151,15 +144,13 @@ export default function SelectChirldren(props: SelectChirldrenProps) {
                                 label="Graph"
                                 onChange={handleGraphChange}
                             >
-                                <MenuItem value={10}>Ten</MenuItem>
-                                <MenuItem value={20}>Twenty</MenuItem>
-                                <MenuItem value={30}>Thirty</MenuItem>
-                                <MenuItem value={50}>Thirty</MenuItem>
-                                <MenuItem value={40}>Thirty</MenuItem>
-                                <MenuItem value={60}>Thirty</MenuItem>
-                                <MenuItem value={70}>Thirty</MenuItem>
-                                <MenuItem value={80}>Thirty</MenuItem>
-                                <MenuItem value={90}>Thirty</MenuItem>
+                                {
+                                    graphSelectData?.panels?.map((p: any, k: number) => (
+                                        <MenuItem value={p.id} key={"row" + k}>
+                                            {p?.title}
+                                        </MenuItem>
+                                    ))
+                                }                                
                             </Select>
                         </FormControl>
                     </Box>

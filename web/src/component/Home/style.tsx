@@ -163,6 +163,24 @@ export const HomeInputSX = ():SxProps<Theme> => {
         }
     }
 };
+export const HomeInput2SX = ():SxProps<Theme> => { 
+    return {        
+        padding: 2,
+        paddingTop: 0,        
+        paddingBottom: 3,
+        position: "relative",      
+        display: 'flex', 
+        "& .MuiTextField-root": {
+            // width: {xs: "90%", sm: "75%"},
+        },        
+        "& .MuiPaper-root": {
+            borderRadius: "8px",
+        },
+        "& .MuiInputLabel-root": {
+            top: '-3px'
+        }
+    }
+};
 export const HomeSelectDateFromSX = ():SxProps<Theme> => { 
     return {        
         paddingLeft: 2,
@@ -263,6 +281,13 @@ export const HomeSelectDateFromComponentSX = ():SxProps<Theme> => {
         '&:hover fieldset': {
             border: '1px solid #66b2ff !important'
         },
+    }
+};
+export const HomeSelectDateFromContainer2SX = ():SxProps<Theme> => { 
+    return {
+        // paddingRight: 2,
+        width: "100%",
+        paddingRight: "16px",
     }
 };
 export const HomeSelectDateFromContainerSX = ():SxProps<Theme> => { 

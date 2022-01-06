@@ -20,932 +20,938 @@
     "links": [],
     "panels": [
         {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
-            "datasource": "aws-test-v530",
-            "description": "It indicates whether the current PD is the leader or a follower.",
-            "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-            },
-            "format": "none",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-            },
-            "gridPos": {
-                "h": 6,
-                "w": 4,
-                "x": 0,
-                "y": 0
-            },
-            "id": 55,
-            "interval": null,
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
+            "title": "default",
+            "type": "row",
+            "panels": [
                 {
-                    "name": "value to text",
-                    "value": 1
+                    "cacheTimeout": null,
+                    "colorBackground": false,
+                    "colorValue": false,
+                    "colors": [
+                        "rgba(245, 54, 54, 0.9)",
+                        "rgba(237, 129, 40, 0.89)",
+                        "rgba(50, 172, 45, 0.97)"
+                    ],
+                    "datasource": "aws-test-v530",
+                    "description": "It indicates whether the current PD is the leader or a follower.",
+                    "fieldConfig": {
+                        "defaults": {},
+                        "overrides": []
+                    },
+                    "format": "none",
+                    "gauge": {
+                        "maxValue": 100,
+                        "minValue": 0,
+                        "show": false,
+                        "thresholdLabels": false,
+                        "thresholdMarkers": true
+                    },
+                    "gridPos": {
+                        "h": 6,
+                        "w": 4,
+                        "x": 0,
+                        "y": 0
+                    },
+                    "id": 55,
+                    "interval": null,
+                    "links": [],
+                    "mappingType": 1,
+                    "mappingTypes": [
+                        {
+                            "name": "value to text",
+                            "value": 1
+                        },
+                        {
+                            "name": "range to text",
+                            "value": 2
+                        }
+                    ],
+                    "maxDataPoints": 100,
+                    "nullPointMode": "connected",
+                    "nullText": null,
+                    "postfix": "",
+                    "postfixFontSize": "50%",
+                    "prefix": "",
+                    "prefixFontSize": "50%",
+                    "rangeMaps": [
+                        {
+                            "from": "1",
+                            "text": "Leader",
+                            "to": "100000"
+                        },
+                        {
+                            "from": "0",
+                            "text": "Follower",
+                            "to": "1"
+                        }
+                    ],
+                    "sparkline": {
+                        "fillColor": "rgba(31, 118, 189, 0.18)",
+                        "full": false,
+                        "lineColor": "rgb(31, 120, 193)",
+                        "show": false
+                    },
+                    "tableColumn": "",
+                    "targets": [
+                        {
+                            "expr": "pd_tso_role{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", dc=\"global\"}",
+                            "format": "time_series",
+                            "instant": true,
+                            "intervalFactor": 2,
+                            "legendFormat": "",
+                            "metric": "pd_server_tso",
+                            "refId": "A",
+                            "step": 40
+                        }
+                    ],
+                    "thresholds": "",
+                    "title": "PD role",
+                    "type": "singlestat",
+                    "valueFontSize": "50%",
+                    "valueMaps": [
+                        {
+                            "op": "=",
+                            "text": "Follower",
+                            "value": "null"
+                        },
+                        {
+                            "op": "=",
+                            "text": "Follower",
+                            "value": "0"
+                        },
+                        {
+                            "op": "=",
+                            "text": "Leader",
+                            "value": "1"
+                        }
+                    ],
+                    "valueName": "current"
                 },
                 {
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "connected",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "1",
-                    "text": "Leader",
-                    "to": "100000"
+                    "cacheTimeout": null,
+                    "colorBackground": false,
+                    "colorValue": false,
+                    "colors": [
+                        "rgba(245, 54, 54, 0.9)",
+                        "rgba(237, 129, 40, 0.89)",
+                        "rgba(50, 172, 45, 0.97)"
+                    ],
+                    "datasource": "aws-test-v530",
+                    "decimals": null,
+                    "description": "The total capacity size of the cluster",
+                    "editable": true,
+                    "error": false,
+                    "fieldConfig": {
+                        "defaults": {},
+                        "overrides": []
+                    },
+                    "format": "decbytes",
+                    "gauge": {
+                        "maxValue": 100,
+                        "minValue": 0,
+                        "show": false,
+                        "thresholdLabels": false,
+                        "thresholdMarkers": false
+                    },
+                    "gridPos": {
+                        "h": 6,
+                        "w": 4,
+                        "x": 4,
+                        "y": 0
+                    },
+                    "id": 10,
+                    "interval": null,
+                    "links": [],
+                    "mappingType": 1,
+                    "mappingTypes": [
+                        {
+                            "name": "value to text",
+                            "value": 1
+                        },
+                        {
+                            "name": "range to text",
+                            "value": 2
+                        }
+                    ],
+                    "maxDataPoints": 100,
+                    "nullPointMode": "null",
+                    "nullText": null,
+                    "postfix": "",
+                    "postfixFontSize": "50%",
+                    "prefix": "",
+                    "prefixFontSize": "50%",
+                    "rangeMaps": [
+                        {
+                            "from": "null",
+                            "text": "N/A",
+                            "to": "null"
+                        }
+                    ],
+                    "sparkline": {
+                        "fillColor": "rgba(77, 135, 25, 0.18)",
+                        "full": true,
+                        "lineColor": "rgb(21, 179, 65)",
+                        "show": false
+                    },
+                    "tableColumn": "",
+                    "targets": [
+                        {
+                            "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",type=\"storage_capacity\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "refId": "A",
+                            "step": 40
+                        }
+                    ],
+                    "thresholds": "",
+                    "title": "Storage capacity",
+                    "type": "singlestat",
+                    "valueFontSize": "80%",
+                    "valueMaps": [
+                        {
+                            "op": "=",
+                            "text": "N/A",
+                            "value": "null"
+                        }
+                    ],
+                    "valueName": "current"
                 },
                 {
-                    "from": "0",
-                    "text": "Follower",
-                    "to": "1"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-            },
-            "tableColumn": "",
-            "targets": [
-                {
-                    "expr": "pd_tso_role{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", dc=\"global\"}",
-                    "format": "time_series",
-                    "instant": true,
-                    "intervalFactor": 2,
-                    "legendFormat": "",
-                    "metric": "pd_server_tso",
-                    "refId": "A",
-                    "step": 40
-                }
-            ],
-            "thresholds": "",
-            "title": "PD role",
-            "type": "singlestat",
-            "valueFontSize": "50%",
-            "valueMaps": [
-                {
-                    "op": "=",
-                    "text": "Follower",
-                    "value": "null"
+                    "cacheTimeout": null,
+                    "colorBackground": false,
+                    "colorValue": false,
+                    "colors": [
+                        "rgba(245, 54, 54, 0.9)",
+                        "rgba(237, 129, 40, 0.89)",
+                        "rgba(50, 172, 45, 0.97)"
+                    ],
+                    "datasource": "aws-test-v530",
+                    "decimals": 1,
+                    "description": "The current storage size of the cluster",
+                    "editable": true,
+                    "error": false,
+                    "fieldConfig": {
+                        "defaults": {},
+                        "overrides": []
+                    },
+                    "format": "decbytes",
+                    "gauge": {
+                        "maxValue": 100,
+                        "minValue": 0,
+                        "show": false,
+                        "thresholdLabels": false,
+                        "thresholdMarkers": true
+                    },
+                    "gridPos": {
+                        "h": 6,
+                        "w": 4,
+                        "x": 8,
+                        "y": 0
+                    },
+                    "hideTimeOverride": false,
+                    "id": 38,
+                    "interval": null,
+                    "links": [],
+                    "mappingType": 1,
+                    "mappingTypes": [
+                        {
+                            "name": "value to text",
+                            "value": 1
+                        },
+                        {
+                            "name": "range to text",
+                            "value": 2
+                        }
+                    ],
+                    "maxDataPoints": 100,
+                    "nullPointMode": "null",
+                    "nullText": null,
+                    "postfix": "",
+                    "postfixFontSize": "50%",
+                    "prefix": "",
+                    "prefixFontSize": "50%",
+                    "rangeMaps": [
+                        {
+                            "from": "null",
+                            "text": "N/A",
+                            "to": "null"
+                        }
+                    ],
+                    "sparkline": {
+                        "fillColor": "rgba(31, 118, 189, 0.18)",
+                        "full": true,
+                        "lineColor": "rgb(31, 120, 193)",
+                        "show": false
+                    },
+                    "tableColumn": "",
+                    "targets": [
+                        {
+                            "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",type=\"storage_size\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "refId": "A",
+                            "step": 40
+                        }
+                    ],
+                    "thresholds": "",
+                    "title": "Current storage size",
+                    "type": "singlestat",
+                    "valueFontSize": "80%",
+                    "valueMaps": [
+                        {
+                            "op": "=",
+                            "text": "N/A",
+                            "value": "null"
+                        }
+                    ],
+                    "valueName": "current"
                 },
                 {
-                    "op": "=",
-                    "text": "Follower",
-                    "value": "0"
-                },
-                {
-                    "op": "=",
-                    "text": "Leader",
-                    "value": "1"
-                }
-            ],
-            "valueName": "current"
-        },
-        {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
-            "datasource": "aws-test-v530",
-            "decimals": null,
-            "description": "The total capacity size of the cluster",
-            "editable": true,
-            "error": false,
-            "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-            },
-            "format": "decbytes",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": false
-            },
-            "gridPos": {
-                "h": 6,
-                "w": 4,
-                "x": 4,
-                "y": 0
-            },
-            "id": 10,
-            "interval": null,
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "null",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(77, 135, 25, 0.18)",
-                "full": true,
-                "lineColor": "rgb(21, 179, 65)",
-                "show": false
-            },
-            "tableColumn": "",
-            "targets": [
-                {
-                    "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",type=\"storage_capacity\"})",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "refId": "A",
-                    "step": 40
-                }
-            ],
-            "thresholds": "",
-            "title": "Storage capacity",
-            "type": "singlestat",
-            "valueFontSize": "80%",
-            "valueMaps": [
-                {
-                    "op": "=",
-                    "text": "N/A",
-                    "value": "null"
-                }
-            ],
-            "valueName": "current"
-        },
-        {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
-            "datasource": "aws-test-v530",
-            "decimals": 1,
-            "description": "The current storage size of the cluster",
-            "editable": true,
-            "error": false,
-            "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-            },
-            "format": "decbytes",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-            },
-            "gridPos": {
-                "h": 6,
-                "w": 4,
-                "x": 8,
-                "y": 0
-            },
-            "hideTimeOverride": false,
-            "id": 38,
-            "interval": null,
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "null",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": true,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-            },
-            "tableColumn": "",
-            "targets": [
-                {
-                    "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",type=\"storage_size\"})",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "refId": "A",
-                    "step": 40
-                }
-            ],
-            "thresholds": "",
-            "title": "Current storage size",
-            "type": "singlestat",
-            "valueFontSize": "80%",
-            "valueMaps": [
-                {
-                    "op": "=",
-                    "text": "N/A",
-                    "value": "null"
-                }
-            ],
-            "valueName": "current"
-        },
-        {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": true,
-            "colors": [
-                "rgba(50, 172, 45, 0.97)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(245, 54, 54, 0.9)"
-            ],
-            "datasource": "aws-test-v530",
-            "description": "The current storage size and used ratio of the cluster",
-            "editable": true,
-            "error": false,
-            "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-            },
-            "format": "percentunit",
-            "gauge": {
-                "maxValue": 1,
-                "minValue": 0,
-                "show": true,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-            },
-            "gridPos": {
-                "h": 6,
-                "w": 4,
-                "x": 12,
-                "y": 0
-            },
-            "hideTimeOverride": false,
-            "id": 37,
-            "interval": null,
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "null",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": true,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-            },
-            "tableColumn": "",
-            "targets": [
-                {
-                    "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",type=\"storage_size\"}) / sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",type=\"storage_capacity\"})",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "refId": "A",
-                    "step": 40
-                }
-            ],
-            "thresholds": "0.01,0.5",
-            "title": "Current storage used",
-            "type": "singlestat",
-            "valueFontSize": "80%",
-            "valueMaps": [
-                {
-                    "op": "=",
-                    "text": "N/A",
-                    "value": "null"
-                }
-            ],
-            "valueName": "current"
-        },
-        {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "#d44a3a",
-                "rgba(237, 129, 40, 0.89)",
-                "#299c46"
-            ],
-            "datasource": "aws-test-v530",
-            "description": "The count of healthy stores",
-            "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-            },
-            "format": "none",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": true
-            },
-            "gridPos": {
-                "h": 6,
-                "w": 4,
-                "x": 16,
-                "y": 0
-            },
-            "id": 97,
-            "interval": null,
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "connected",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": false,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": false
-            },
-            "tableColumn": "",
-            "targets": [
-                {
-                    "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",  type=\"store_up_count\"})",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "refId": "A"
-                }
-            ],
-            "thresholds": "0,1",
-            "title": "Normal stores",
-            "type": "singlestat",
-            "valueFontSize": "100%",
-            "valueMaps": [
-                {
-                    "op": "=",
-                    "text": "N/A",
-                    "value": "null"
-                }
-            ],
-            "valueName": "current"
-        },
-        {
-            "cacheTimeout": null,
-            "colorBackground": false,
-            "colorValue": false,
-            "colors": [
-                "rgba(245, 54, 54, 0.9)",
-                "rgba(237, 129, 40, 0.89)",
-                "rgba(50, 172, 45, 0.97)"
-            ],
-            "datasource": "aws-test-v530",
-            "description": "The total number of Regions without replicas",
-            "editable": true,
-            "error": false,
-            "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-            },
-            "format": "none",
-            "gauge": {
-                "maxValue": 100,
-                "minValue": 0,
-                "show": false,
-                "thresholdLabels": false,
-                "thresholdMarkers": false
-            },
-            "gridPos": {
-                "h": 6,
-                "w": 4,
-                "x": 20,
-                "y": 0
-            },
-            "id": 20,
-            "interval": null,
-            "links": [],
-            "mappingType": 1,
-            "mappingTypes": [
-                {
-                    "name": "value to text",
-                    "value": 1
-                },
-                {
-                    "name": "range to text",
-                    "value": 2
-                }
-            ],
-            "maxDataPoints": 100,
-            "nullPointMode": "null",
-            "nullText": null,
-            "postfix": "",
-            "postfixFontSize": "50%",
-            "prefix": "",
-            "prefixFontSize": "50%",
-            "rangeMaps": [
-                {
-                    "from": "null",
-                    "text": "N/A",
-                    "to": "null"
-                }
-            ],
-            "sparkline": {
-                "fillColor": "rgba(31, 118, 189, 0.18)",
-                "full": true,
-                "lineColor": "rgb(31, 120, 193)",
-                "show": true
-            },
-            "tableColumn": "",
-            "targets": [
-                {
-                    "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",type=\"leader_count\"})",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "refId": "A",
-                    "step": 40
-                }
-            ],
-            "thresholds": "",
-            "title": "Number of Regions",
-            "type": "singlestat",
-            "valueFontSize": "80%",
-            "valueMaps": [
-                {
-                    "op": "=",
-                    "text": "N/A",
-                    "value": "null"
-                }
-            ],
-            "valueName": "current"
-        },
-        {
-            "columns": [
-                {
-                    "text": "Current",
-                    "value": "current"
-                }
-            ],
-            "datasource": "aws-test-v530",
-            "editable": true,
-            "error": false,
-            "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-            },
-            "fontSize": "100%",
-            "gridPos": {
-                "h": 7,
-                "w": 5,
-                "x": 0,
-                "y": 6
-            },
-            "hideTimeOverride": true,
-            "id": 96,
-            "links": [],
-            "pageSize": null,
-            "scroll": false,
-            "showHeader": true,
-            "sort": {
-                "col": null,
-                "desc": false
-            },
-            "styles": [
-                {
-                    "align": "auto",
-                    "dateFormat": "YYYY-MM-DD HH:mm:ss",
-                    "pattern": "Metric",
-                    "sanitize": false,
-                    "type": "string"
-                },
-                {
-                    "align": "auto",
-                    "colorMode": "cell",
+                    "cacheTimeout": null,
+                    "colorBackground": false,
+                    "colorValue": true,
                     "colors": [
                         "rgba(50, 172, 45, 0.97)",
                         "rgba(237, 129, 40, 0.89)",
                         "rgba(245, 54, 54, 0.9)"
                     ],
-                    "decimals": 0,
-                    "pattern": "Current",
-                    "thresholds": [
-                        "1",
-                        "2"
+                    "datasource": "aws-test-v530",
+                    "description": "The current storage size and used ratio of the cluster",
+                    "editable": true,
+                    "error": false,
+                    "fieldConfig": {
+                        "defaults": {},
+                        "overrides": []
+                    },
+                    "format": "percentunit",
+                    "gauge": {
+                        "maxValue": 1,
+                        "minValue": 0,
+                        "show": true,
+                        "thresholdLabels": false,
+                        "thresholdMarkers": true
+                    },
+                    "gridPos": {
+                        "h": 6,
+                        "w": 4,
+                        "x": 12,
+                        "y": 0
+                    },
+                    "hideTimeOverride": false,
+                    "id": 37,
+                    "interval": null,
+                    "links": [],
+                    "mappingType": 1,
+                    "mappingTypes": [
+                        {
+                            "name": "value to text",
+                            "value": 1
+                        },
+                        {
+                            "name": "range to text",
+                            "value": 2
+                        }
                     ],
-                    "type": "number",
-                    "unit": "short"
-                }
-            ],
-            "targets": [
-                {
-                    "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_disconnected_count\"})",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "legendFormat": "Disconnect Stores",
-                    "refId": "B",
-                    "step": 20
+                    "maxDataPoints": 100,
+                    "nullPointMode": "null",
+                    "nullText": null,
+                    "postfix": "",
+                    "postfixFontSize": "50%",
+                    "prefix": "",
+                    "prefixFontSize": "50%",
+                    "rangeMaps": [
+                        {
+                            "from": "null",
+                            "text": "N/A",
+                            "to": "null"
+                        }
+                    ],
+                    "sparkline": {
+                        "fillColor": "rgba(31, 118, 189, 0.18)",
+                        "full": true,
+                        "lineColor": "rgb(31, 120, 193)",
+                        "show": false
+                    },
+                    "tableColumn": "",
+                    "targets": [
+                        {
+                            "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",type=\"storage_size\"}) / sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",type=\"storage_capacity\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "refId": "A",
+                            "step": 40
+                        }
+                    ],
+                    "thresholds": "0.01,0.5",
+                    "title": "Current storage used",
+                    "type": "singlestat",
+                    "valueFontSize": "80%",
+                    "valueMaps": [
+                        {
+                            "op": "=",
+                            "text": "N/A",
+                            "value": "null"
+                        }
+                    ],
+                    "valueName": "current"
                 },
                 {
-                    "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_unhealth_count\"})",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "legendFormat": "Unhealth Stores",
-                    "refId": "C",
-                    "step": 20
+                    "cacheTimeout": null,
+                    "colorBackground": false,
+                    "colorValue": false,
+                    "colors": [
+                        "#d44a3a",
+                        "rgba(237, 129, 40, 0.89)",
+                        "#299c46"
+                    ],
+                    "datasource": "aws-test-v530",
+                    "description": "The count of healthy stores",
+                    "fieldConfig": {
+                        "defaults": {},
+                        "overrides": []
+                    },
+                    "format": "none",
+                    "gauge": {
+                        "maxValue": 100,
+                        "minValue": 0,
+                        "show": false,
+                        "thresholdLabels": false,
+                        "thresholdMarkers": true
+                    },
+                    "gridPos": {
+                        "h": 6,
+                        "w": 4,
+                        "x": 16,
+                        "y": 0
+                    },
+                    "id": 97,
+                    "interval": null,
+                    "links": [],
+                    "mappingType": 1,
+                    "mappingTypes": [
+                        {
+                            "name": "value to text",
+                            "value": 1
+                        },
+                        {
+                            "name": "range to text",
+                            "value": 2
+                        }
+                    ],
+                    "maxDataPoints": 100,
+                    "nullPointMode": "connected",
+                    "nullText": null,
+                    "postfix": "",
+                    "postfixFontSize": "50%",
+                    "prefix": "",
+                    "prefixFontSize": "50%",
+                    "rangeMaps": [
+                        {
+                            "from": "null",
+                            "text": "N/A",
+                            "to": "null"
+                        }
+                    ],
+                    "sparkline": {
+                        "fillColor": "rgba(31, 118, 189, 0.18)",
+                        "full": false,
+                        "lineColor": "rgb(31, 120, 193)",
+                        "show": false
+                    },
+                    "tableColumn": "",
+                    "targets": [
+                        {
+                            "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",  type=\"store_up_count\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "refId": "A"
+                        }
+                    ],
+                    "thresholds": "0,1",
+                    "title": "Normal stores",
+                    "type": "singlestat",
+                    "valueFontSize": "100%",
+                    "valueMaps": [
+                        {
+                            "op": "=",
+                            "text": "N/A",
+                            "value": "null"
+                        }
+                    ],
+                    "valueName": "current"
                 },
                 {
-                    "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_low_space_count\"})",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "legendFormat": "LowSpace Stores",
-                    "refId": "D",
-                    "step": 20
+                    "cacheTimeout": null,
+                    "colorBackground": false,
+                    "colorValue": false,
+                    "colors": [
+                        "rgba(245, 54, 54, 0.9)",
+                        "rgba(237, 129, 40, 0.89)",
+                        "rgba(50, 172, 45, 0.97)"
+                    ],
+                    "datasource": "aws-test-v530",
+                    "description": "The total number of Regions without replicas",
+                    "editable": true,
+                    "error": false,
+                    "fieldConfig": {
+                        "defaults": {},
+                        "overrides": []
+                    },
+                    "format": "none",
+                    "gauge": {
+                        "maxValue": 100,
+                        "minValue": 0,
+                        "show": false,
+                        "thresholdLabels": false,
+                        "thresholdMarkers": false
+                    },
+                    "gridPos": {
+                        "h": 6,
+                        "w": 4,
+                        "x": 20,
+                        "y": 0
+                    },
+                    "id": 20,
+                    "interval": null,
+                    "links": [],
+                    "mappingType": 1,
+                    "mappingTypes": [
+                        {
+                            "name": "value to text",
+                            "value": 1
+                        },
+                        {
+                            "name": "range to text",
+                            "value": 2
+                        }
+                    ],
+                    "maxDataPoints": 100,
+                    "nullPointMode": "null",
+                    "nullText": null,
+                    "postfix": "",
+                    "postfixFontSize": "50%",
+                    "prefix": "",
+                    "prefixFontSize": "50%",
+                    "rangeMaps": [
+                        {
+                            "from": "null",
+                            "text": "N/A",
+                            "to": "null"
+                        }
+                    ],
+                    "sparkline": {
+                        "fillColor": "rgba(31, 118, 189, 0.18)",
+                        "full": true,
+                        "lineColor": "rgb(31, 120, 193)",
+                        "show": true
+                    },
+                    "tableColumn": "",
+                    "targets": [
+                        {
+                            "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",type=\"leader_count\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "refId": "A",
+                            "step": 40
+                        }
+                    ],
+                    "thresholds": "",
+                    "title": "Number of Regions",
+                    "type": "singlestat",
+                    "valueFontSize": "80%",
+                    "valueMaps": [
+                        {
+                            "op": "=",
+                            "text": "N/A",
+                            "value": "null"
+                        }
+                    ],
+                    "valueName": "current"
                 },
                 {
-                    "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_down_count\"})",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "legendFormat": "Down Stores",
-                    "refId": "E",
-                    "step": 20
-                },
-                {
-                    "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_offline_count\"})",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "legendFormat": "Offline Stores",
-                    "refId": "F",
-                    "step": 20
-                },
-                {
-                    "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_tombstone_count\"})",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "legendFormat": "Tombstone Stores",
-                    "refId": "G",
-                    "step": 20
-                },
-                {
-                    "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_slow_count\"})",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "legendFormat": "Slow Stores",
-                    "refId": "H",
-                    "step": 20
-                }
-            ],
-            "timeFrom": "1s",
-            "title": "Abnormal stores",
-            "transform": "timeseries_aggregations",
-            "type": "table-old"
-        },
-        {
-            "alert": {
-                "conditions": [
-                    {
-                        "evaluator": {
-                            "params": [
-                                100
+                    "columns": [
+                        {
+                            "text": "Current",
+                            "value": "current"
+                        }
+                    ],
+                    "datasource": "aws-test-v530",
+                    "editable": true,
+                    "error": false,
+                    "fieldConfig": {
+                        "defaults": {},
+                        "overrides": []
+                    },
+                    "fontSize": "100%",
+                    "gridPos": {
+                        "h": 7,
+                        "w": 5,
+                        "x": 0,
+                        "y": 6
+                    },
+                    "hideTimeOverride": true,
+                    "id": 96,
+                    "links": [],
+                    "pageSize": null,
+                    "scroll": false,
+                    "showHeader": true,
+                    "sort": {
+                        "col": null,
+                        "desc": false
+                    },
+                    "styles": [
+                        {
+                            "align": "auto",
+                            "dateFormat": "YYYY-MM-DD HH:mm:ss",
+                            "pattern": "Metric",
+                            "sanitize": false,
+                            "type": "string"
+                        },
+                        {
+                            "align": "auto",
+                            "colorMode": "cell",
+                            "colors": [
+                                "rgba(50, 172, 45, 0.97)",
+                                "rgba(237, 129, 40, 0.89)",
+                                "rgba(245, 54, 54, 0.9)"
                             ],
-                            "type": "gt"
+                            "decimals": 0,
+                            "pattern": "Current",
+                            "thresholds": [
+                                "1",
+                                "2"
+                            ],
+                            "type": "number",
+                            "unit": "short"
+                        }
+                    ],
+                    "targets": [
+                        {
+                            "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_disconnected_count\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "Disconnect Stores",
+                            "refId": "B",
+                            "step": 20
                         },
-                        "operator": {
-                            "type": "and"
+                        {
+                            "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_unhealth_count\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "Unhealth Stores",
+                            "refId": "C",
+                            "step": 20
                         },
-                        "query": {
-                            "params": [
-                                "B",
-                                "1m",
-                                "now"
-                            ]
+                        {
+                            "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_low_space_count\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "LowSpace Stores",
+                            "refId": "D",
+                            "step": 20
                         },
-                        "reducer": {
-                            "params": [],
-                            "type": "max"
+                        {
+                            "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_down_count\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "Down Stores",
+                            "refId": "E",
+                            "step": 20
                         },
-                        "type": "query"
+                        {
+                            "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_offline_count\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "Offline Stores",
+                            "refId": "F",
+                            "step": 20
+                        },
+                        {
+                            "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_tombstone_count\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "Tombstone Stores",
+                            "refId": "G",
+                            "step": 20
+                        },
+                        {
+                            "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\", type=\"store_slow_count\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "Slow Stores",
+                            "refId": "H",
+                            "step": 20
+                        }
+                    ],
+                    "timeFrom": "1s",
+                    "title": "Abnormal stores",
+                    "transform": "timeseries_aggregations",
+                    "type": "table-old"
+                },
+                {
+                    "alert": {
+                        "conditions": [
+                            {
+                                "evaluator": {
+                                    "params": [
+                                        100
+                                    ],
+                                    "type": "gt"
+                                },
+                                "operator": {
+                                    "type": "and"
+                                },
+                                "query": {
+                                    "params": [
+                                        "B",
+                                        "1m",
+                                        "now"
+                                    ]
+                                },
+                                "reducer": {
+                                    "params": [],
+                                    "type": "max"
+                                },
+                                "type": "query"
+                            }
+                        ],
+                        "executionErrorState": "alerting",
+                        "for": "0m",
+                        "frequency": "60s",
+                        "handler": 1,
+                        "message": "Regions are unhealthy",
+                        "name": "region health alert",
+                        "noDataState": "keep_state",
+                        "notifications": []
+                    },
+                    "aliasColors": {},
+                    "bars": false,
+                    "dashLength": 10,
+                    "dashes": false,
+                    "datasource": "aws-test-v530",
+                    "decimals": null,
+                    "description": "It records the unusual Regions' count which may include pending peers, down peers, extra peers, offline peers, missing peers or learner peers",
+                    "fieldConfig": {
+                        "defaults": {},
+                        "overrides": []
+                    },
+                    "fill": 1,
+                    "fillGradient": 0,
+                    "gridPos": {
+                        "h": 7,
+                        "w": 11,
+                        "x": 5,
+                        "y": 6
+                    },
+                    "hiddenSeries": false,
+                    "id": 72,
+                    "legend": {
+                        "alignAsTable": true,
+                        "avg": false,
+                        "current": true,
+                        "max": true,
+                        "min": false,
+                        "rightSide": true,
+                        "show": true,
+                        "total": false,
+                        "values": true
+                    },
+                    "lines": true,
+                    "linewidth": 1,
+                    "links": [],
+                    "nullPointMode": "null",
+                    "options": {
+                        "alertThreshold": true
+                    },
+                    "paceLength": 10,
+                    "percentage": false,
+                    "pluginVersion": "7.5.7",
+                    "pointradius": 5,
+                    "points": false,
+                    "renderer": "flot",
+                    "seriesOverrides": [],
+                    "spaceLength": 10,
+                    "stack": false,
+                    "steppedLine": false,
+                    "targets": [
+                        {
+                            "expr": "pd_regions_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\"}",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "{{type}}",
+                            "refId": "A"
+                        },
+                        {
+                            "expr": "sum(pd_regions_status{tidb_cluster=\"$tidb_cluster\"}) by (instance, type)",
+                            "format": "time_series",
+                            "hide": true,
+                            "intervalFactor": 2,
+                            "legendFormat": "{{type}}",
+                            "refId": "B"
+                        },
+                        {
+                            "expr": "pd_regions_offline_status{tidb_cluster=\"$tidb_cluster\", type=\"offline-peer-region-count\", instance=\"$instance\"}",
+                            "format": "time_series",
+                            "intervalFactor": 1,
+                            "legendFormat": "{{type}}",
+                            "refId": "C"
+                        }
+                    ],
+                    "thresholds": [
+                        {
+                            "colorMode": "critical",
+                            "fill": true,
+                            "line": true,
+                            "op": "gt",
+                            "value": 100,
+                            "visible": true
+                        }
+                    ],
+                    "timeFrom": null,
+                    "timeRegions": [],
+                    "timeShift": null,
+                    "title": "Region health",
+                    "tooltip": {
+                        "shared": true,
+                        "sort": 0,
+                        "value_type": "individual"
+                    },
+                    "type": "graph",
+                    "xaxis": {
+                        "buckets": null,
+                        "mode": "time",
+                        "name": null,
+                        "show": true,
+                        "values": []
+                    },
+                    "yaxes": [
+                        {
+                            "format": "short",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": null,
+                            "show": true
+                        },
+                        {
+                            "format": "short",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": null,
+                            "show": true
+                        }
+                    ],
+                    "yaxis": {
+                        "align": false,
+                        "alignLevel": null
                     }
-                ],
-                "executionErrorState": "alerting",
-                "for": "0m",
-                "frequency": "60s",
-                "handler": 1,
-                "message": "Regions are unhealthy",
-                "name": "region health alert",
-                "noDataState": "keep_state",
-                "notifications": []
-            },
-            "aliasColors": {},
-            "bars": false,
-            "dashLength": 10,
-            "dashes": false,
-            "datasource": "aws-test-v530",
-            "decimals": null,
-            "description": "It records the unusual Regions' count which may include pending peers, down peers, extra peers, offline peers, missing peers or learner peers",
-            "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-            },
-            "fill": 1,
-            "fillGradient": 0,
-            "gridPos": {
-                "h": 7,
-                "w": 11,
-                "x": 5,
-                "y": 6
-            },
-            "hiddenSeries": false,
-            "id": 72,
-            "legend": {
-                "alignAsTable": true,
-                "avg": false,
-                "current": true,
-                "max": true,
-                "min": false,
-                "rightSide": true,
-                "show": true,
-                "total": false,
-                "values": true
-            },
-            "lines": true,
-            "linewidth": 1,
-            "links": [],
-            "nullPointMode": "null",
-            "options": {
-                "alertThreshold": true
-            },
-            "paceLength": 10,
-            "percentage": false,
-            "pluginVersion": "7.5.7",
-            "pointradius": 5,
-            "points": false,
-            "renderer": "flot",
-            "seriesOverrides": [],
-            "spaceLength": 10,
-            "stack": false,
-            "steppedLine": false,
-            "targets": [
-                {
-                    "expr": "pd_regions_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\"}",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "legendFormat": "{{type}}",
-                    "refId": "A"
                 },
                 {
-                    "expr": "sum(pd_regions_status{tidb_cluster=\"$tidb_cluster\"}) by (instance, type)",
-                    "format": "time_series",
-                    "hide": true,
-                    "intervalFactor": 2,
-                    "legendFormat": "{{type}}",
-                    "refId": "B"
-                },
-                {
-                    "expr": "pd_regions_offline_status{tidb_cluster=\"$tidb_cluster\", type=\"offline-peer-region-count\", instance=\"$instance\"}",
-                    "format": "time_series",
-                    "intervalFactor": 1,
-                    "legendFormat": "{{type}}",
-                    "refId": "C"
+                    "aliasColors": {},
+                    "bars": false,
+                    "dashLength": 10,
+                    "dashes": false,
+                    "datasource": "aws-test-v530",
+                    "decimals": null,
+                    "description": "The current peer count of the cluster",
+                    "editable": true,
+                    "error": false,
+                    "fieldConfig": {
+                        "defaults": {},
+                        "overrides": []
+                    },
+                    "fill": 0,
+                    "fillGradient": 0,
+                    "grid": {},
+                    "gridPos": {
+                        "h": 7,
+                        "w": 8,
+                        "x": 16,
+                        "y": 6
+                    },
+                    "hiddenSeries": false,
+                    "id": 18,
+                    "legend": {
+                        "avg": false,
+                        "current": false,
+                        "max": false,
+                        "min": false,
+                        "show": false,
+                        "total": false,
+                        "values": false
+                    },
+                    "lines": true,
+                    "linewidth": 3,
+                    "links": [],
+                    "nullPointMode": "null",
+                    "options": {
+                        "alertThreshold": true
+                    },
+                    "paceLength": 10,
+                    "percentage": false,
+                    "pluginVersion": "7.5.7",
+                    "pointradius": 5,
+                    "points": false,
+                    "renderer": "flot",
+                    "seriesOverrides": [],
+                    "spaceLength": 10,
+                    "stack": false,
+                    "steppedLine": true,
+                    "targets": [
+                        {
+                            "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",  type=\"region_count\"})",
+                            "format": "time_series",
+                            "intervalFactor": 2,
+                            "legendFormat": "count",
+                            "refId": "A",
+                            "step": 4
+                        }
+                    ],
+                    "thresholds": [],
+                    "timeFrom": null,
+                    "timeRegions": [],
+                    "timeShift": null,
+                    "title": "Current peer count",
+                    "tooltip": {
+                        "msResolution": false,
+                        "shared": true,
+                        "sort": 0,
+                        "value_type": "cumulative"
+                    },
+                    "type": "graph",
+                    "xaxis": {
+                        "buckets": null,
+                        "mode": "time",
+                        "name": null,
+                        "show": true,
+                        "values": []
+                    },
+                    "yaxes": [
+                        {
+                            "format": "none",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": null,
+                            "show": true
+                        },
+                        {
+                            "format": "none",
+                            "label": null,
+                            "logBase": 1,
+                            "max": null,
+                            "min": null,
+                            "show": false
+                        }
+                    ],
+                    "yaxis": {
+                        "align": false,
+                        "alignLevel": null
+                    }
                 }
-            ],
-            "thresholds": [
-                {
-                    "colorMode": "critical",
-                    "fill": true,
-                    "line": true,
-                    "op": "gt",
-                    "value": 100,
-                    "visible": true
-                }
-            ],
-            "timeFrom": null,
-            "timeRegions": [],
-            "timeShift": null,
-            "title": "Region health",
-            "tooltip": {
-                "shared": true,
-                "sort": 0,
-                "value_type": "individual"
-            },
-            "type": "graph",
-            "xaxis": {
-                "buckets": null,
-                "mode": "time",
-                "name": null,
-                "show": true,
-                "values": []
-            },
-            "yaxes": [
-                {
-                    "format": "short",
-                    "label": null,
-                    "logBase": 1,
-                    "max": null,
-                    "min": null,
-                    "show": true
-                },
-                {
-                    "format": "short",
-                    "label": null,
-                    "logBase": 1,
-                    "max": null,
-                    "min": null,
-                    "show": true
-                }
-            ],
-            "yaxis": {
-                "align": false,
-                "alignLevel": null
-            }
-        },
-        {
-            "aliasColors": {},
-            "bars": false,
-            "dashLength": 10,
-            "dashes": false,
-            "datasource": "aws-test-v530",
-            "decimals": null,
-            "description": "The current peer count of the cluster",
-            "editable": true,
-            "error": false,
-            "fieldConfig": {
-                "defaults": {},
-                "overrides": []
-            },
-            "fill": 0,
-            "fillGradient": 0,
-            "grid": {},
-            "gridPos": {
-                "h": 7,
-                "w": 8,
-                "x": 16,
-                "y": 6
-            },
-            "hiddenSeries": false,
-            "id": 18,
-            "legend": {
-                "avg": false,
-                "current": false,
-                "max": false,
-                "min": false,
-                "show": false,
-                "total": false,
-                "values": false
-            },
-            "lines": true,
-            "linewidth": 3,
-            "links": [],
-            "nullPointMode": "null",
-            "options": {
-                "alertThreshold": true
-            },
-            "paceLength": 10,
-            "percentage": false,
-            "pluginVersion": "7.5.7",
-            "pointradius": 5,
-            "points": false,
-            "renderer": "flot",
-            "seriesOverrides": [],
-            "spaceLength": 10,
-            "stack": false,
-            "steppedLine": true,
-            "targets": [
-                {
-                    "expr": "sum(pd_cluster_status{tidb_cluster=\"$tidb_cluster\", instance=\"$instance\",  type=\"region_count\"})",
-                    "format": "time_series",
-                    "intervalFactor": 2,
-                    "legendFormat": "count",
-                    "refId": "A",
-                    "step": 4
-                }
-            ],
-            "thresholds": [],
-            "timeFrom": null,
-            "timeRegions": [],
-            "timeShift": null,
-            "title": "Current peer count",
-            "tooltip": {
-                "msResolution": false,
-                "shared": true,
-                "sort": 0,
-                "value_type": "cumulative"
-            },
-            "type": "graph",
-            "xaxis": {
-                "buckets": null,
-                "mode": "time",
-                "name": null,
-                "show": true,
-                "values": []
-            },
-            "yaxes": [
-                {
-                    "format": "none",
-                    "label": null,
-                    "logBase": 1,
-                    "max": null,
-                    "min": null,
-                    "show": true
-                },
-                {
-                    "format": "none",
-                    "label": null,
-                    "logBase": 1,
-                    "max": null,
-                    "min": null,
-                    "show": false
-                }
-            ],
-            "yaxis": {
-                "align": false,
-                "alignLevel": null
-            }
-        },
+            ]
+        },        
         {
             "collapsed": true,
             "datasource": null,

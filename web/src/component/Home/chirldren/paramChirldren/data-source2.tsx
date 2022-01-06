@@ -6,6 +6,7 @@ import TextField from '@mui/material/TextField';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DatePicker from '@mui/lab/DatePicker';
+import TimePicker from '@mui/lab/TimePicker';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
@@ -24,11 +25,15 @@ import {
     HomeSelectDateToSX,
     HomeSelectDateFromComponentSX,
     HomeSelectDateFromContainerSX,
+    HomeInput2SX,
+    HomeSelectDateFromContainer2SX,
 } from '@/component/Home/style';
 
 interface DataSource2Props {
-    portError2: boolean,
-    hostError2: boolean,
+    grafanaHostError2: boolean,
+    grafanaPortError2: boolean,
+    prometheusHostError2: boolean,
+    prometheusPortError2: boolean,
     register: UseFormRegister<Record<string, any>>,
     errors: {
         [x: string]: any;
@@ -37,19 +42,25 @@ interface DataSource2Props {
     setDateFrom2: React.Dispatch<React.SetStateAction<Date | null>>,
     dateTo2: Date | null,
     setDateTo2: React.Dispatch<React.SetStateAction<Date | null>>,
+    valueTimePicker3:any,
+    setValueTimePicker3:any,
 };
 
 export default function DataSource2(props: DataSource2Props) {
 
     const {
-        hostError2,
-        portError2,
+        grafanaHostError2,
+        grafanaPortError2,
+        prometheusHostError2,
+        prometheusPortError2,
         register,
         errors,
         dateFrom2,
         setDateFrom2,
         dateTo2,
         setDateTo2,
+        valueTimePicker3,
+        setValueTimePicker3,
     } = props;
 
     return (
@@ -59,42 +70,77 @@ export default function DataSource2(props: DataSource2Props) {
                 </Grid>
             <Divider sx={DividerStyle()} />
             <Grid item sx={HomeInputSX()}>
-                <Grid item xs={8} sx={HomeInputHostSX()}>
+                <Grid item xs={7} sx={HomeInputHostSX()}>
                     <TextField
-                        id={"data-source-1-input-host"}
-                        label={"Host"}
+                        id={"data-source-1-input-Grafanahost2"}
+                        label={"Grafana Host"}
                         variant="outlined"
                         sx={HomeInputHostTextSX()}
-                        error={hostError2}
+                        error={grafanaHostError2}
                         autoComplete="false"
-                        {...register("host2", inputVerify("host"))}
+                        {...register("grafanaHost2", inputVerify("host"))}
                     />
-                    {errors["host2"] &&
+                    {errors["grafanaHost2"] &&
                         <span className={"form-dialog-input-error-tip"}>
-                            {errors["host2"].message}
+                            {errors["grafanaHost2"].message}
                         </span>
                     }
                 </Grid>
-                <Grid item xs={4} sx={HomeInputPortSX()}>
+                <Grid item xs={5} sx={HomeInputPortSX()}>
                     <TextField
-                        id={"data-source-1-input-port"}
-                        label={"Port"}
+                        id={"data-source-1-input-Grafanaport2"}
+                        label={"Grafana Port"}
                         variant="outlined"
                         sx={HomeInputHostTextSX()}
-                        error={portError2}
+                        error={grafanaPortError2}
                         autoComplete="false"
-                        {...register("port2", inputVerify("port"))}
+                        {...register("grafanaPort2", inputVerify("port"))}
                     />
-                    {errors["port2"] &&
+                    {errors["grafanaPort2"] &&
                         <span className={"form-dialog-input-error-tip"}>
-                            {errors["port2"].message}
+                            {errors["grafanaPort2"].message}
                         </span>
                     }
                 </Grid>
             </Grid>
 
+            <Grid item sx={HomeInput2SX()}>
+                <Grid item xs={7} sx={HomeInputHostSX()}>
+                    <TextField
+                        id={"data-source-1-input-Prometheushost2"}
+                        label={"Prometheus Host"}
+                        variant="outlined"
+                        sx={HomeInputHostTextSX()}
+                        error={prometheusHostError2}
+                        autoComplete="false"
+                        {...register("prometheusHost2", inputVerify("host"))}
+                    />
+                    {errors["prometheusHost2"] &&
+                        <span className={"form-dialog-input-error-tip"}>
+                            {errors["prometheusHost2"].message}
+                        </span>
+                    }
+                </Grid>
+                <Grid item xs={5} sx={HomeInputPortSX()}>
+                    <TextField
+                        id={"data-source-1-input-Prometheusport2"}
+                        label={"Prometheus Port"}
+                        variant="outlined"
+                        sx={HomeInputHostTextSX()}
+                        error={prometheusPortError2}
+                        autoComplete="false"
+                        {...register("prometheusPort2", inputVerify("port"))}
+                    />
+                    {errors["prometheusPort2"] &&
+                        <span className={"form-dialog-input-error-tip"}>
+                            {errors["prometheusPort2"].message}
+                        </span>
+                    }
+                </Grid>
+            </Grid>            
+
             <Grid item sx={HomeSelectDateFromSX()}>
-                <Grid item sx={HomeSelectDateFromContainerSX()}>
+                <Grid item xs={7} sx={HomeSelectDateFromContainer2SX()}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DatePicker
                             label="Date from"
@@ -112,10 +158,45 @@ export default function DataSource2(props: DataSource2Props) {
                         />
                     </LocalizationProvider>
                 </Grid>
+                <Grid item xs={5} sx={HomeSelectDateFromContainerSX()}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <TimePicker
+                            ampm={false}
+                            openTo="hours"
+                            views={['hours', 'minutes', 'seconds']}
+                            inputFormat="HH:mm:ss"
+                            mask="__:__:__"
+                            label="With seconds"
+                            value={valueTimePicker3}
+                            onChange={(newValue) => {
+                                setValueTimePicker3(newValue);
+                            }}
+                            renderInput={(params) => <TextField {...params} />}
+                        />
+                    </LocalizationProvider>
+                </Grid>
             </Grid>
 
             <Grid item sx={HomeSelectDateToSX()}>
-                <Grid item sx={HomeSelectDateFromContainerSX()}>
+                <Grid item xs={7} sx={HomeSelectDateFromContainer2SX()}>
+                    <LocalizationProvider dateAdapter={AdapterDateFns}>
+                        <DatePicker
+                            label="Date to"
+                            value={dateTo2}
+                            onChange={(newValue) => {
+                                setDateTo2(newValue);
+                            }}
+                            renderInput={
+                                (params) =>
+                                    <TextField
+                                        {...params}
+                                        sx={HomeSelectDateFromComponentSX()}
+                                    />
+                            }
+                        />
+                    </LocalizationProvider>
+                </Grid>
+                <Grid item xs={5} sx={HomeSelectDateFromContainerSX()}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DatePicker
                             label="Date to"
