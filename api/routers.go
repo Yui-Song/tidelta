@@ -1,17 +1,20 @@
 package main
 
 import (
+	"database/sql"
 	"encoding/json"
 	"fmt"
-	"github.com/gin-gonic/gin"
-	"github.com/panjf2000/ants/v2"
-	"github.com/prometheus/common/model"
 	"io/ioutil"
 	"math"
 	"net/http"
 	"net/url"
 	"strconv"
 	"sync"
+
+	"github.com/gin-gonic/gin"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/panjf2000/ants/v2"
+	"github.com/prometheus/common/model"
 )
 
 type QueryResponse struct {
@@ -49,8 +52,97 @@ type DiffComponent struct {
 }
 
 type DiffItem struct {
-	Metrics string             `json:"metrics"`
-	Value   map[string]float64 `json:"value"`
+	Metrics string                 `json:"metrics"`
+	Value   map[string]interface{} `json:"value"`
+}
+
+func ConfigReport(c *gin.Context) {
+	host1 := c.Query("host1")
+	host2 := c.Query("host2")
+	index1 := make(map[string]string)
+	db1, err := sql.Open("mysql", host1)
+	if err != nil {
+		c.String(http.StatusBadRequest, fmt.Sprintf("%v", err))
+		return
+	}
+	rows, err := db1.Query("select `TYPE`, `KEY`, `VALUE` from Information_schema.cluster_config")
+	if err != nil {
+		c.String(http.StatusBadRequest, fmt.Sprintf("%v", err))
+		return
+	}
+	for rows.Next() {
+		var component, key, value string
+		err = rows.Scan(&component, &key, &value)
+		if err != nil {
+			c.String(http.StatusBadRequest, fmt.Sprintf("%v", err))
+			return
+		}
+		index1[fmt.Sprintf("%v_%v", component, key)] = value
+	}
+
+	// compare with the second db
+	result := make(map[string][]DiffItem)
+
+	db2, err := sql.Open("mysql", host2)
+	if err != nil {
+		c.String(http.StatusBadRequest, fmt.Sprintf("%v", err))
+		return
+	}
+	rows, err = db2.Query("select `TYPE`, `KEY`, `VALUE` from Information_schema.cluster_config")
+	if err != nil {
+		c.String(http.StatusBadRequest, fmt.Sprintf("%v", err))
+		return
+	}
+	for rows.Next() {
+		var component, key, value string
+		err = rows.Scan(&component, &key, &value)
+		if err != nil {
+			c.String(http.StatusBadRequest, fmt.Sprintf("%v", err))
+			return
+		}
+		var diffFlag bool
+		var value1 interface{}
+		if value1, ok := index1[fmt.Sprintf("%v_%v", component, key)]; ok {
+			diffFlag = value == value1
+		} else {
+			diffFlag = true
+			value1 = ""
+		}
+
+		if diffFlag {
+			if c, ok := result[component]; ok {
+				c = append(c, DiffItem{
+					Metrics: key,
+					Value: map[string]interface{}{
+						"start": value1,
+						"end":   value,
+					},
+				})
+			} else {
+				result[component] = []DiffItem{
+					{
+						Metrics: key,
+						Value: map[string]interface{}{
+							"start": value1,
+							"end":   value,
+						},
+					},
+				}
+			}
+		}
+	}
+
+	response := DiffReportResponse{
+		Message: "success",
+		Data:    []*DiffComponent{},
+	}
+	for component, diffItemList := range result {
+		response.Data = append(response.Data, &DiffComponent{
+			Component: component,
+			Data:      diffItemList,
+		})
+	}
+	c.JSON(http.StatusOK, response)
 }
 
 func DiffReport(c *gin.Context) {
@@ -102,7 +194,7 @@ func DiffReport(c *gin.Context) {
 
 	wg.Wait()
 	response.Message = "success"
-	c.JSON(200, response)
+	c.JSON(http.StatusOK, response)
 }
 
 func queryDiff(param DiffReportParam) (DiffItem, error) {
@@ -119,7 +211,7 @@ func queryDiff(param DiffReportParam) (DiffItem, error) {
 	}
 	return DiffItem{
 		Metrics: param.name,
-		Value: map[string]float64{
+		Value: map[string]interface{}{
 			"start": item1,
 			"end":   item2,
 		},
