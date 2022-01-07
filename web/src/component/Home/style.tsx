@@ -3,7 +3,89 @@ import { styled, alpha } from '@mui/material/styles';
 import InputBase from '@mui/material/InputBase';
 import { SxProps, Theme } from '@mui/system';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Tooltip, { TooltipProps, tooltipClasses } from '@mui/material/Tooltip';
 
+export const CatalogTooltip2 = styled(({ className, ...props }: TooltipProps) => (
+    <Tooltip 
+        {...props} 
+        arrow         
+        enterDelay={1000}
+        classes={{ popper: className }}        
+    />
+))(({ theme }) => ({
+    [`& .${tooltipClasses.arrow}`]: {
+        color: theme.palette.primary.main,
+    },
+    [`& .${tooltipClasses.tooltip}`]: {
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.text.secondary,
+        borderRadius: 5,
+        marginTop: "0px !important",
+        fontSize: "14px",
+    },
+}));
+
+export const cardHeaderCheckboxStyle = ():SxProps<Theme> => {
+    return {    
+        color: "#afbfcf",                        
+        '&.Mui-checked': {
+            color: "#90caf9",
+        },
+    };
+};
+export const darkThemeMenuButtonTooltip2 = createTheme({
+    palette: {
+        primary: {
+            main: "#004c99",
+            light: "#fff"            
+        },
+        text: {
+            primary: "#fff",
+            secondary: "#fff"
+        }
+    },
+});
+export const lightThemeMenuButtonTooltip2 = createTheme({
+    palette: {
+        primary: {
+            main: "#404040",
+            light: "#fff"            
+        },
+        text: {
+            primary: "#404040",
+            secondary: "#fff"
+        }
+    },
+});
+export const alertLevelStyle = (): SxProps<Theme> => {
+    return {
+        backgroundColor: "#c94e13",
+        color: "#fff",
+        padding: "3px",
+        paddingBottom: "5px",
+        minWidth: "70px",
+        minHeight: "32px",        
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        borderRadius: "50px",
+    };
+};
+export const TableCellStyle = (): SxProps<Theme> => {
+    return {
+        maxWidth: "350px",
+        overflow: "hidden",
+        textOverflow: "ellipsis",
+        whiteSpace: "nowrap",
+        paddingLeft: "20px",
+        backgroundColor: "#22252a",
+        color: "#fff",
+        borderBottom: "1px solid #3d4048",
+        height: "50px",
+        fontSize: "18",
+        fontWeight: "600",
+    };
+};
 export const SelectPanelTheme = createTheme({
     components: {
         MuiFormControl: {

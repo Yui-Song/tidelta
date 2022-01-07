@@ -5,10 +5,6 @@
             "component": "TiDB",
             "data": [
                 {
-                    "metrics": "",
-                    "value": null
-                },
-                {
                     "metrics": "TiDB_CPU_Delta",
                     "value": {
                         "end": 0,

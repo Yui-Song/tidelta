@@ -270,7 +270,7 @@ export default function Home() {
     };
 
     React.useEffect(() => {
-        const host = "http://52.41.98.206:8162/";
+        const host = "http://52.41.98.206:8089/";
         const authorization = "Bearer eyJrIjoiczZteVJMNWdpMGNkWEhzaEVWVk1SVTBkRlVMSmRsYzEiLCJuIjoiaGFuY2tzaG9uIiwiaWQiOjF9";
         const params = {
             query: null,
