@@ -15209,7 +15209,7 @@
                     "value": "acquire_pessimistic_lock"
                 }
             },
-            "title": "Scheduler - $command",
+            "title": "Scheduler - acquire_pessimistic_lock",
             "type": "row"
         },
         {
@@ -16451,7 +16451,7 @@
                     "value": "batch_get"
                 }
             },
-            "title": "Scheduler - $command",
+            "title": "Scheduler - batch_get",
             "type": "row"
         },
         {
@@ -17693,7 +17693,7 @@
                     "value": "check_txn_status"
                 }
             },
-            "title": "Scheduler - $command",
+            "title": "Scheduler - check_txn_status",
             "type": "row"
         },
         {
@@ -18935,7 +18935,7 @@
                     "value": "commit"
                 }
             },
-            "title": "Scheduler - $command",
+            "title": "Scheduler - commit",
             "type": "row"
         },
         {
@@ -20177,7 +20177,7 @@
                     "value": "get"
                 }
             },
-            "title": "Scheduler - $command",
+            "title": "Scheduler - get",
             "type": "row"
         },
         {
@@ -21419,7 +21419,7 @@
                     "value": "pessimistic_rollback"
                 }
             },
-            "title": "Scheduler - $command",
+            "title": "Scheduler - pessimistic_rollback",
             "type": "row"
         },
         {
@@ -22661,7 +22661,7 @@
                     "value": "prewrite"
                 }
             },
-            "title": "Scheduler - $command",
+            "title": "Scheduler - prewrite",
             "type": "row"
         },
         {
@@ -23903,7 +23903,7 @@
                     "value": "resolve_lock"
                 }
             },
-            "title": "Scheduler - $command",
+            "title": "Scheduler - resolve_lock",
             "type": "row"
         },
         {
@@ -25145,7 +25145,7 @@
                     "value": "resolve_lock_lite"
                 }
             },
-            "title": "Scheduler - $command",
+            "title": "Scheduler - resolve_lock_lite",
             "type": "row"
         },
         {
@@ -26387,7 +26387,7 @@
                     "value": "rollback"
                 }
             },
-            "title": "Scheduler - $command",
+            "title": "Scheduler - rollback",
             "type": "row"
         },
         {
@@ -27629,7 +27629,7 @@
                     "value": "scan"
                 }
             },
-            "title": "Scheduler - $command",
+            "title": "Scheduler - scan",
             "type": "row"
         },
         {
@@ -28871,7 +28871,7 @@
                     "value": "scan_lock"
                 }
             },
-            "title": "Scheduler - $command",
+            "title": "Scheduler - scan_lock",
             "type": "row"
         },
         {
@@ -30113,7 +30113,7 @@
                     "value": "txn_heart_beat"
                 }
             },
-            "title": "Scheduler - $command",
+            "title": "Scheduler - txn_heart_beat",
             "type": "row"
         },
         {
@@ -39962,7 +39962,7 @@
                     "value": "kv"
                 }
             },
-            "title": "RocksDB - $db",
+            "title": "RocksDB - kv",
             "type": "row"
         },
         {
@@ -44824,7 +44824,7 @@
                     "value": "raft"
                 }
             },
-            "title": "RocksDB - $db",
+            "title": "RocksDB - raft",
             "type": "row"
         },
         {
@@ -47833,7 +47833,7 @@
                 }
             ],
             "repeat": "titan_db",
-            "title": "Titan - $titan_db",
+            "title": "Titan - All",
             "type": "row"
         },
         {

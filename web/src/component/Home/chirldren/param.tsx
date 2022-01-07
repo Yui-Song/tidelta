@@ -54,6 +54,22 @@ interface ParamComponentProps {
     rowSelectData: any,
     graphSelectData: any,
     tabs: number,
+    dateFromError01: boolean,
+    dateFromError02: boolean,
+    dateToError01: boolean,
+    dateToError02: boolean,
+    dateFromError11: boolean,
+    dateFromError12: boolean,
+    dateToError11: boolean,
+    dateToError12: boolean,
+    setDateFromError01: React.Dispatch<React.SetStateAction<boolean>>,
+    setDateFromError02: React.Dispatch<React.SetStateAction<boolean>>,
+    setDateToError01: React.Dispatch<React.SetStateAction<boolean>>,
+    setDateToError02: React.Dispatch<React.SetStateAction<boolean>>,
+    setDateFromError11: React.Dispatch<React.SetStateAction<boolean>>,
+    setDateFromError12: React.Dispatch<React.SetStateAction<boolean>>,
+    setDateToError11: React.Dispatch<React.SetStateAction<boolean>>,
+    setDateToError12: React.Dispatch<React.SetStateAction<boolean>>,
 };
 
 export default function ParamComponent(props: ParamComponentProps) {
@@ -94,6 +110,22 @@ export default function ParamComponent(props: ParamComponentProps) {
         setValueTimePicker3,
         valueTimePicker4,
         setValueTimePicker4,
+        dateFromError01,
+        dateFromError02,
+        dateToError01,
+        dateToError02,
+        dateFromError11,
+        dateFromError12,
+        dateToError11,
+        dateToError12,
+        setDateFromError01,
+        setDateFromError02,
+        setDateToError01,
+        setDateToError02,
+        setDateFromError11,
+        setDateFromError12,
+        setDateToError11,
+        setDateToError12,
     } = props;
 
     return (
@@ -109,7 +141,19 @@ export default function ParamComponent(props: ParamComponentProps) {
                 dateFrom1={dateFrom1}
                 setDateFrom1={setDateFrom1}
                 dateTo1={dateTo1}
-                setDateTo1={setDateTo1}
+                setDateTo1={setDateTo1}                
+                valueTimePicker1={valueTimePicker1}
+                setValueTimePicker1={setValueTimePicker1}
+                valueTimePicker2={valueTimePicker2}
+                setValueTimePicker2={setValueTimePicker2}
+                dateFromError01={dateFromError01}
+                dateFromError02={dateFromError02}
+                dateToError01={dateToError01}
+                dateToError02={dateToError02}
+                setDateFromError01={setDateFromError01}
+                setDateFromError02={setDateFromError02}
+                setDateToError01={setDateToError01}
+                setDateToError02={setDateToError02}
             />
 
             <DataSource2 
@@ -125,6 +169,16 @@ export default function ParamComponent(props: ParamComponentProps) {
                 setDateTo2={setDateTo2}
                 valueTimePicker3={valueTimePicker3}
                 setValueTimePicker3={setValueTimePicker3}
+                valueTimePicker4={valueTimePicker4}
+                setValueTimePicker4={setValueTimePicker4}
+                dateFromError11={dateFromError11}
+                dateFromError12={dateFromError12}
+                dateToError11={dateToError11}
+                dateToError12={dateToError12}
+                setDateFromError11={setDateFromError11}
+                setDateFromError12={setDateFromError12}
+                setDateToError11={setDateToError11}
+                setDateToError12={setDateToError12}
             />
 
             {

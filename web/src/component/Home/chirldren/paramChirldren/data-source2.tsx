@@ -44,6 +44,16 @@ interface DataSource2Props {
     setDateTo2: React.Dispatch<React.SetStateAction<Date | null>>,
     valueTimePicker3:any,
     setValueTimePicker3:any,
+    valueTimePicker4: any,
+    setValueTimePicker4: any,
+    dateFromError11: boolean,
+    dateFromError12: boolean,
+    dateToError11: boolean,
+    dateToError12: boolean,
+    setDateFromError11: React.Dispatch<React.SetStateAction<boolean>>,
+    setDateFromError12: React.Dispatch<React.SetStateAction<boolean>>,
+    setDateToError11: React.Dispatch<React.SetStateAction<boolean>>,
+    setDateToError12: React.Dispatch<React.SetStateAction<boolean>>,
 };
 
 export default function DataSource2(props: DataSource2Props) {
@@ -61,6 +71,16 @@ export default function DataSource2(props: DataSource2Props) {
         setDateTo2,
         valueTimePicker3,
         setValueTimePicker3,
+        valueTimePicker4,
+        setValueTimePicker4,
+        dateFromError11,
+        dateFromError12,
+        dateToError11,
+        dateToError12,
+        setDateFromError11,
+        setDateFromError12,
+        setDateToError11,
+        setDateToError12,
     } = props;
 
     return (
@@ -144,14 +164,18 @@ export default function DataSource2(props: DataSource2Props) {
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DatePicker
                             label="Date from"
+                            inputFormat="yyyy/MM/dd"
+                            mask="____/__/__"
                             value={dateFrom2}
                             onChange={(newValue) => {
                                 setDateFrom2(newValue);
+                                if (dateFromError11) setDateFromError11(false);
                             }}
                             renderInput={
                                 (params) =>
                                     <TextField
                                         {...params}
+                                        error={dateFromError11}
                                         sx={HomeSelectDateFromComponentSX()}
                                     />
                             }
@@ -166,12 +190,20 @@ export default function DataSource2(props: DataSource2Props) {
                             views={['hours', 'minutes', 'seconds']}
                             inputFormat="HH:mm:ss"
                             mask="__:__:__"
-                            label="With seconds"
+                            label="Date from"
                             value={valueTimePicker3}
                             onChange={(newValue) => {
                                 setValueTimePicker3(newValue);
+                                if (dateFromError12) setDateFromError12(false);
                             }}
-                            renderInput={(params) => <TextField {...params} />}
+                            renderInput={
+                                (params) => 
+                                <TextField 
+                                    {...params}
+                                    error={dateFromError12} 
+                                    sx={HomeSelectDateFromComponentSX()}
+                                />
+                            }
                         />
                     </LocalizationProvider>
                 </Grid>
@@ -182,14 +214,18 @@ export default function DataSource2(props: DataSource2Props) {
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
                         <DatePicker
                             label="Date to"
+                            inputFormat="yyyy/MM/dd"
+                            mask="____/__/__"
                             value={dateTo2}
                             onChange={(newValue) => {
                                 setDateTo2(newValue);
+                                if (dateToError11) setDateToError11(false);
                             }}
                             renderInput={
                                 (params) =>
                                     <TextField
                                         {...params}
+                                        error={dateToError11}
                                         sx={HomeSelectDateFromComponentSX()}
                                     />
                             }
@@ -198,18 +234,25 @@ export default function DataSource2(props: DataSource2Props) {
                 </Grid>
                 <Grid item xs={5} sx={HomeSelectDateFromContainerSX()}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
-                        <DatePicker
+                        <TimePicker
+                            ampm={false}
+                            openTo="hours"
+                            views={['hours', 'minutes', 'seconds']}
+                            inputFormat="HH:mm:ss"
+                            mask="__:__:__"
                             label="Date to"
-                            value={dateTo2}
+                            value={valueTimePicker4}
                             onChange={(newValue) => {
-                                setDateTo2(newValue);
+                                setValueTimePicker4(newValue);
+                                if (dateToError12) setDateToError12(false);
                             }}
                             renderInput={
-                                (params) =>
-                                    <TextField
-                                        {...params}
-                                        sx={HomeSelectDateFromComponentSX()}
-                                    />
+                                (params) => 
+                                <TextField 
+                                    {...params}
+                                    error={dateToError12} 
+                                    sx={HomeSelectDateFromComponentSX()}
+                                />
                             }
                         />
                     </LocalizationProvider>

@@ -5448,7 +5448,7 @@
                     }
                 }
             ],
-            "title": "TiKV-Write affected TiDB-Write ?",
+            "title": "TiKV-Write affected TiDB-Write",
             "type": "row"
         },
         
@@ -7245,7 +7245,7 @@
                     }
                 }
             ],
-            "title": "TiKV-Read affected TiDB-Write ?",
+            "title": "TiKV-Read affected TiDB-Write",
             "type": "row"
         }
         

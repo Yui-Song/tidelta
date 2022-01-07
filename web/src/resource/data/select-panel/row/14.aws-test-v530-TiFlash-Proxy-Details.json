@@ -10649,7 +10649,7 @@
                 }
             ],
             "repeat": "command",
-            "title": "Scheduler - $command",
+            "title": "Scheduler - All",
             "type": "row"
         },
         {
@@ -16162,7 +16162,7 @@
                 }
             ],
             "repeat": "db",
-            "title": "RocksDB - $db",
+            "title": "RocksDB - All",
             "type": "row"
         },
         {

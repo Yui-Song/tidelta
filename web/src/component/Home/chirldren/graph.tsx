@@ -12,10 +12,13 @@ import {
     HomeGraphSX,
 } from '@/component/Home/style';
 import TabsChirldren from "@/component/Home/chirldren/graphChirldren/tabs";
+import { DataSource } from "@/component/Home/home";
 
 interface GraphChirldrenProps {
     tabs: number,
     handleTabsChange: (event: React.SyntheticEvent, newValue: number) => void,
+    dataSource1: DataSource,
+    dataSource2: DataSource,
 };
 
 export default function GraphChirldren(props: GraphChirldrenProps) {
@@ -23,6 +26,8 @@ export default function GraphChirldren(props: GraphChirldrenProps) {
     const {
         tabs,
         handleTabsChange,
+        dataSource1,
+        dataSource2,
     } = props;
 
     return (
@@ -41,7 +46,9 @@ export default function GraphChirldren(props: GraphChirldrenProps) {
                 <TabPanel value={tabs} index={2}>
                     <Grid item xs={12} sx={{ marginBottom: "8px",}} className={"HomeRawMetricsGraph"}>
                         <iframe 
-                            src="http://18.237.4.239:3000/d-solo/000000011/aws-test-v530-tidb?orgId=1&refresh=30s&from=1641206337164&to=1641209937164&panelId=80" 
+                            src={
+                                "http://" + "18.237.4.239" + ":" + "3000" + "/d-solo/000000011/aws-test-v530-tidb?orgId=1&refresh=30s&from=1641206337164&to=1641209937164&panelId=80"                                
+                            }
                             width="100%" 
                             height="100%" 
                             frameBorder="0">

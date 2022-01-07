@@ -259,7 +259,7 @@
                     "value": "raw_batch_get"
                 }
             },
-            "title": "Read - $command",
+            "title": "Read - raw_batch_get",
             "type": "row"
         },
         {
@@ -509,7 +509,7 @@
                     "value": "raw_batch_get_command"
                 }
             },
-            "title": "Read - $command",
+            "title": "Read - raw_batch_get_command",
             "type": "row"
         },
         {
@@ -759,7 +759,7 @@
                     "value": "raw_batch_scan"
                 }
             },
-            "title": "Read - $command",
+            "title": "Read - raw_batch_scan",
             "type": "row"
         },
         {
@@ -1009,7 +1009,7 @@
                     "value": "raw_get"
                 }
             },
-            "title": "Read - $command",
+            "title": "Read - raw_get",
             "type": "row"
         },
         {
@@ -1259,7 +1259,7 @@
                     "value": "raw_get_key_ttl"
                 }
             },
-            "title": "Read - $command",
+            "title": "Read - raw_get_key_ttl",
             "type": "row"
         },
         {
@@ -1509,7 +1509,7 @@
                     "value": "raw_scan"
                 }
             },
-            "title": "Read - $command",
+            "title": "Read - raw_scan",
             "type": "row"
         }
     ],

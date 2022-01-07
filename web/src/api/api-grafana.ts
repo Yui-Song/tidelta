@@ -13,14 +13,12 @@ interface GetDashboardsParam {
 
 /** Get Dashboards list */
 export function getDashboardsList(host: string, cookie: string, params?: GetDashboardsParam | undefined) {
-    return apiRequest(host).get("api/search", {
-        params: params,
+    return apiRequest(host).get("", {
+        // params: params,
         headers: {
-            "Cookie": cookie,
-            "Content-Type": 'text/plain',
-            'Test-Cors': 'abc',
-            "Connection": "keep-alive",
-            "Access-Control-Allow-Origin": "http://localhost"
+            "Accept": "application/json",
+            "Content-Type": "application/json",
+            "Authorization": cookie,
         }
     });
 }
