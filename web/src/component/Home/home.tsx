@@ -7,6 +7,7 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import { extend } from 'umi-request';
 import {
     HomeBoxSX,
     HomeFormSX
@@ -37,7 +38,11 @@ import TiKV_Raw from "@/resource/data/select-panel/row/19.aws-test-v530-TiKV-Raw
 import TiKV_Summary from "@/resource/data/select-panel/row/20.aws-test-v530-TiKV-Summary.json";
 import TiKV_Trouble_Shooting from "@/resource/data/select-panel/row/21.aws-test-v530-TiKV-Trouble-Shooting.json";
 import Tidb_Cluster_Node_exporter from "@/resource/data/select-panel/row/22.Tidb-Cluster-Node_exporter.json";
+import DashboardJsons from "@/resource/data/dashboard.json";
 
+interface DashboardJsonsProps {
+    dashboardList: Array<DashboardData>
+}
 export interface DataSource {
     grafanaHost: string,
     grafanaPort: string,
@@ -57,6 +62,23 @@ interface SubmitData {
     prometheusHost2: string,
     prometheusPort1: string,
     prometheusPort2: string,
+}
+
+interface DashboardData {
+    id: number,
+    uid: string,
+    title: string,
+    uri: string,
+    url: string,
+    slug: string,
+    type: string,
+    tags: string,
+    isStarred: string,
+    folderId: string,
+    folderUid: string,
+    folderTitle: string,
+    folderUrl: string,
+    sortMeta: string,
 }
 
 export default function Home() {
@@ -140,6 +162,8 @@ export default function Home() {
     const [graphIndex, setGraphIndex] = React.useState<number>(0); 
 
     const [tabs, setTabs] = React.useState(0); // 标签页
+    const [dashboardsData2, setDashboardsData2] = React.useState<DashboardJsonsProps>(DashboardJsons); // 一级下拉选择数据
+    const [dashboardsData1, setDashboardsData1] = React.useState<DashboardJsonsProps>(DashboardJsons); // 一级下拉选择数据
     const [rowSelectData, setRowSelectData] = React.useState<any>(); // 二级下拉框数据
     const [graphSelectData, setgraphSelectData] = React.useState<any>(); // 三级下拉框数据
 
@@ -187,8 +211,11 @@ export default function Home() {
         setGraph("");
     };
 
+    const [submitss, setSubmitss] = React.useState(0);
+
     const onSubmits = (data: SubmitData, e: any) => {
         // console.log("[data]: ", data);
+        setSubmitss(submitss + 1);
         let timeFrom1 = null;
         let timeTo1 = null;
         let timeFrom2 = null;
@@ -270,23 +297,39 @@ export default function Home() {
     };
 
     React.useEffect(() => {
-        const host = "http://52.41.98.206:8089/";
-        const authorization = "Bearer eyJrIjoiczZteVJMNWdpMGNkWEhzaEVWVk1SVTBkRlVMSmRsYzEiLCJuIjoiaGFuY2tzaG9uIiwiaWQiOjF9";
-        const params = {
-            query: null,
-            starred: false,
-            skipRecent: true,
-            skipStarred: true,
-            folderIds: 1,
-            layout: "list",
-            prevSort: null,
-            type: "dash-db",
-        };
-        getDashboardsList(host, authorization, params).then((response) => {
-            console.log("[#002] getDashboardsList: ", response);
-        }).catch((err) => {
-            console.log("[#l001] error:", err);            
-        });
+        // const requestO = extend({
+        //     prefix: "http://52.41.98.206:8089",
+        //     timeout: 300000,
+        // });
+        // const host = "http://52.41.98.206:8089";
+        // const authorization = "Bearer eyJrIjoiczZteVJMNWdpMGNkWEhzaEVWVk1SVTBkRlVMSmRsYzEiLCJuIjoiaGFuY2tzaG9uIiwiaWQiOjF9";
+        // const params = {
+            // query: null,
+            // starred: false,
+            // skipRecent: true,
+            // skipStarred: true,
+            // folderIds: 1,
+            // layout: "list",
+            // // prevSort: null,
+            // type: "dash-db",
+        // };
+        // requestO.get("/api/search", {
+        //     params: params,
+        //     headers: {
+        //         "Accept": "application/json",
+        //         "Content-Type": "application/json",
+        //         "Authorization": authorization,
+        //     }
+        // }).then((response) => {
+        //     console.log("[#002] getDashboardsList: ", response);
+        // }).catch((err) => {
+        //     console.log("[#l001] error:", err);
+        // });
+        // getDashboardsList(host, authorization, params).then((response) => {
+        //     console.log("[#002] getDashboardsList: ", response);
+        // }).catch((err) => {
+        //     console.log("[#l001] error:", err);            
+        // });
     }, []);
 
     React.useEffect(() => {
@@ -420,12 +463,15 @@ export default function Home() {
                     setDateToError12={setDateToError12}
                 />
                 {/* 右边展示组件 */}
-                <GraphChirldren
+                {DashboardJsons && <GraphChirldren
                     tabs={tabs}
                     handleTabsChange={handleTabsChange}
                     dataSource1={dataSource1}
                     dataSource2={dataSource2}
-                />
+                    dashboardsData2={DashboardJsons}
+                    dashboardIndex={dashboardIndex}
+                    submitss = {submitss}
+                />}
             </form>
         </Box>
     );

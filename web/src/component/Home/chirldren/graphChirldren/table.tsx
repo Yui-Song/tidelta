@@ -128,23 +128,7 @@ const EnhancedTableToolbar = (props: {components: string}) => {
 
 export default function EnhancedTable(props: EnhancedTableProp) {
 
-    const { propsData, components } = props;
-    const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(30);
-
-    const handleChangePage = (event: unknown, newPage: number) => {
-        console.log("[newPage]", newPage);
-        // setParamsObj({
-        //     ...paramsObj,
-        //     page: newPage,
-        // });
-        setPage(newPage);
-    };
-
-    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
-        setPage(0);
-    };
+    const { propsData, components } = props;    
 
     // React.useEffect(() => {
     //     $("#tabsContainer").css("height", $("#root").height() - 17 + "");
@@ -154,7 +138,7 @@ export default function EnhancedTable(props: EnhancedTableProp) {
     // }, []);
 
     return (
-        <Box sx={{ width: '100%', flex: 1, flexGrow: 1, display: "flex", marginBottom: "16px" }}>
+        <Grid xs={12} sx={{flex: 1, flexGrow: 1, display: "flex", marginBottom: "16px" }}>
             <Paper sx={{ 
                 width: '100%', 
                 mb: 2, 
@@ -204,6 +188,7 @@ export default function EnhancedTable(props: EnhancedTableProp) {
                             {
                                 propsData?.map((row, index) => {
                                     const labelId = `enhanced2-table-checkbox-${index}`;
+                                    const deffB = (parseInt(row.value?.end, 10) - parseInt(row.value?.start, 10)) / parseInt(row.value?.start, 10) * 100;
                                     return (
                                         <TableRow
                                             hover
@@ -274,9 +259,7 @@ export default function EnhancedTable(props: EnhancedTableProp) {
                                                     padding: "10px 16px"
                                                 }}
                                             >
-                                                {(parseInt(row.value?.end, 10) - parseInt(row.value?.start, 10)) / 
-                                                    parseInt(row.value?.start, 10) * 100
-                                                }%
+                                                {deffB ? parseInt(deffB, 10) : 0}%
                                             </TableCell>
                                         </TableRow>
                                     );
@@ -285,6 +268,6 @@ export default function EnhancedTable(props: EnhancedTableProp) {
                     </Table>
                 </TableContainer>
             </Paper>
-        </Box>
+        </Grid>
     );
 }

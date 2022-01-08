@@ -24,43 +24,28 @@ export default function TabPanel(props: TabPanelProps) {
     }, []);
 
     return (
-        <div
-            role="tabpanel"
-            hidden={value !== index}
-            id={`vertical-tabpanel-${index}`}
-            aria-labelledby={`vertical-tab-${index}`}
-            style={{
-                flex: value !== index ? 0 : 1,
-                display: "flex",
-                flexDirection: "column",                
-            }}
-            {...other}
-        >
-            {value === index && (
-                <Box sx={{ 
-                    p: 1, 
-                    display: "flex", 
-                    flexWrap: "wrap", 
-                    overflowY: "auto",                    
-                    // flex: 1,
-                    "&::-webkit-scrollbar": {
-                        backgroundColor: " #2b2b2b",
-                        width: "12px",
-                    },
-                    "&::-webkit-scrollbar-thumb": {
-                        cursor: "pointer",
-                        border: "1px solid #2b2b2b",
-                        borderRadius: "12px",
-                        backgroundColor: "#6b6b6b",
-                    },
-                    "&::-webkit-scrollbar-thumb:hover": {
-                        backgroundColor: "#959595",
-                        border: "1px solid #2b2b2b",             
-                    }                    
-                }} id={"tabsContainer"}>
-                    {children}
-                </Box>
-            )}
-        </div>
+        <Box sx={{ 
+            p: 1, 
+            display: "flex", 
+            flexWrap: "wrap", 
+            overflowY: "auto",                    
+            flex: 1,
+            "&::-webkit-scrollbar": {
+                backgroundColor: " #2b2b2b",
+                width: "12px",
+            },
+            "&::-webkit-scrollbar-thumb": {
+                cursor: "pointer",
+                border: "1px solid #2b2b2b",
+                borderRadius: "12px",
+                backgroundColor: "#6b6b6b",
+            },
+            "&::-webkit-scrollbar-thumb:hover": {
+                backgroundColor: "#959595",
+                border: "1px solid #2b2b2b",             
+            }                    
+        }} id={"tabsContainer"}>
+            {children}
+        </Box>
     );
 }

@@ -59,7 +59,7 @@ export const lightThemeMenuButtonTooltip2 = createTheme({
 });
 export const alertLevelStyle = (): SxProps<Theme> => {
     return {
-        backgroundColor: "#c94e13",
+        backgroundColor: "#0066e5",
         color: "#fff",
         padding: "3px",
         paddingBottom: "5px",

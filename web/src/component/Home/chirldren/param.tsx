@@ -182,7 +182,7 @@ export default function ParamComponent(props: ParamComponentProps) {
             />
 
             {
-                tabs === 2 ? 
+                tabs === 1 ? 
                 <SelectChirldren 
                     dashboard={dashboard}
                     handleChange={handleChange}

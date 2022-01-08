@@ -13,8 +13,8 @@ interface GetDashboardsParam {
 
 /** Get Dashboards list */
 export function getDashboardsList(host: string, cookie: string, params?: GetDashboardsParam | undefined) {
-    return apiRequest(host).get("", {
-        // params: params,
+    return apiRequest(host).get("/api/search", {
+        params: params,
         headers: {
             "Accept": "application/json",
             "Content-Type": "application/json",
