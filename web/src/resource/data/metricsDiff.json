@@ -1,0 +1,211 @@
+{
+    "message": "success",
+    "data": [
+        {
+            "component": "TiDB",
+            "data": [
+                {
+                    "metrics": "TiDB_CPU_Delta",
+                    "value": {
+                        "end": 0,
+                        "start": 0
+                    }
+                },
+                {
+                    "metrics": "Duration_P80",
+                    "value": {
+                        "end": 2220.46002294978,
+                        "start": 1284.9451565705233
+                    }
+                },
+                {
+                    "metrics": "Connection Idel Duration_80_not_in_txn",
+                    "value": {
+                        "end": 3.9583105299535704,
+                        "start": 4.246981586917227
+                    }
+                },
+                {
+                    "metrics": "Duration_P999",
+                    "value": {
+                        "end": 14125.824000000015,
+                        "start": 15595.519999999997
+                    }
+                },
+                {
+                    "metrics": "Avg_Latency",
+                    "value": {
+                        "end": 1108.677158362714,
+                        "start": 1153.685340045007
+                    }
+                },
+                {
+                    "metrics": "TPS",
+                    "value": {
+                        "end": 15.177777777777777,
+                        "start": 14.327777777777776
+                    }
+                },
+                {
+                    "metrics": "QPS",
+                    "value": {
+                        "end": 14.738888888888889,
+                        "start": 13.616666666666665
+                    }
+                },
+                {
+                    "metrics": "Parse",
+                    "value": {
+                        "end": 14.12586289871807,
+                        "start": 15.248317415012895
+                    }
+                },
+                {
+                    "metrics": "Max_Latency",
+                    "value": {
+                        "end": 16384,
+                        "start": 16384
+                    }
+                },
+                {
+                    "metrics": "TiDB_CPU",
+                    "value": {
+                        "end": 0.8022222222222221,
+                        "start": 0.7546111111111107
+                    }
+                },
+                {
+                    "metrics": "Compile",
+                    "value": {
+                        "end": 69.86678436781615,
+                        "start": 242.85173070607473
+                    }
+                },
+                {
+                    "metrics": "PessimisticLock",
+                    "value": {
+                        "end": 845.1490909090916,
+                        "start": 1688.1066666666668
+                    }
+                },
+                {
+                    "metrics": "TSO",
+                    "value": {
+                        "end": 3.556146043771041,
+                        "start": 3.6969047619047406
+                    }
+                },
+                {
+                    "metrics": "Execute",
+                    "value": {
+                        "end": 8144.006391975962,
+                        "start": 11679.042075660609
+                    }
+                },
+                {
+                    "metrics": "Get",
+                    "value": {
+                        "end": 0.4328032799765923,
+                        "start": 0.4310750093015151
+                    }
+                },
+                {
+                    "metrics": "Plan_Cache_Ops",
+                    "value": {
+                        "end": 0,
+                        "start": 0
+                    }
+                },
+                {
+                    "metrics": "TiDB_Coprocessor",
+                    "value": {
+                        "end": 0.8305952380952385,
+                        "start": 0.8763636363636366
+                    }
+                },
+                {
+                    "metrics": "Prewrite",
+                    "value": {
+                        "end": 912.1759252929871,
+                        "start": 556.8969383953033
+                    }
+                },
+                {
+                    "metrics": "Commit",
+                    "value": {
+                        "end": 945.9021335696914,
+                        "start": 590.0216888865801
+                    }
+                }
+            ]
+        },
+        {
+            "component": "TiKV",
+            "data": [
+                {
+                    "metrics": "KV_Prewrite",
+                    "value": {
+                        "end": 907.12572412713,
+                        "start": 641.9129634105958
+                    }
+                },
+                {
+                    "metrics": "TiKV_CPU",
+                    "value": {
+                        "end": 0.7127407407407408,
+                        "start": 0.6668148148148147
+                    }
+                },
+                {
+                    "metrics": "TiKV_CPU_Delta",
+                    "value": {
+                        "end": 0.18377777777777685,
+                        "start": 0.12172222222222276
+                    }
+                },
+                {
+                    "metrics": "Apply Log",
+                    "value": {
+                        "end": 9.656920498588445,
+                        "start": 8.111006301745313
+                    }
+                },
+                {
+                    "metrics": "KV_Pessimistic_lock",
+                    "value": {
+                        "end": 907.12572412713,
+                        "start": 641.9129634105958
+                    }
+                },
+                {
+                    "metrics": "KV_Get",
+                    "value": {
+                        "end": 0.41070859872611465,
+                        "start": 0.40730568243279874
+                    }
+                },
+                {
+                    "metrics": "TiKV_Coprocessor",
+                    "value": {
+                        "end": 0.45942438098793087,
+                        "start": 0.4665276244223613
+                    }
+                },
+                {
+                    "metrics": "Append Log",
+                    "value": {
+                        "end": 13.6346450208239,
+                        "start": 14.097358802870067
+                    }
+                },
+                {
+                    "metrics": "Commit Log",
+                    "value": {
+                        "end": 326.6793326488725,
+                        "start": 204.7838466753455
+                    }
+                }
+            ]
+        }
+    ]
+}
