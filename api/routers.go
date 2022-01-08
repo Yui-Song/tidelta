@@ -9,6 +9,7 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 	"sync"
 
 	"github.com/gin-gonic/gin"
@@ -104,6 +105,7 @@ func ConfigReport(c *gin.Context) {
 		var value1 interface{}
 		if value1, ok := index1[fmt.Sprintf("%v_%v", component, key)]; ok {
 			diffFlag = value == value1
+			delete(index1, fmt.Sprintf("%v_%v", component, key))
 		} else {
 			diffFlag = true
 			value1 = ""
@@ -111,7 +113,7 @@ func ConfigReport(c *gin.Context) {
 
 		if diffFlag {
 			if c, ok := result[component]; ok {
-				c = append(c, DiffItem{
+				result[component] = append(c, DiffItem{
 					Metrics: key,
 					Value: map[string]interface{}{
 						"start": value1,
@@ -128,6 +130,32 @@ func ConfigReport(c *gin.Context) {
 						},
 					},
 				}
+			}
+		}
+	}
+
+	fmt.Println(index1)
+
+	for combinedKey, value := range index1 {
+		splitList := strings.Split(combinedKey, "_")
+		component, key := splitList[0], splitList[1]
+		if c, ok := result[component]; ok {
+			result[component] = append(c, DiffItem{
+				Metrics: key,
+				Value: map[string]interface{}{
+					"start": value,
+					"end":   "",
+				},
+			})
+		} else {
+			result[component] = []DiffItem{
+				{
+					Metrics: key,
+					Value: map[string]interface{}{
+						"start": value,
+						"end":   "",
+					},
+				},
 			}
 		}
 	}
