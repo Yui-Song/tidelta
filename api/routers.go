@@ -60,64 +60,83 @@ type DiffItem struct {
 func ConfigReport(c *gin.Context) {
 	host1 := c.Query("host1")
 	host2 := c.Query("host2")
-	index1 := make(map[string]string)
+	index1 := make(map[string]map[string]string)
 	db1, err := sql.Open("mysql", host1)
 	if err != nil {
 		c.String(http.StatusBadRequest, fmt.Sprintf("%v", err))
 		return
 	}
-	rows, err := db1.Query("select `TYPE`, `KEY`, `VALUE` from Information_schema.cluster_config")
+	rows, err := db1.Query("select `TYPE`, `INSTANCE`, `KEY`, `VALUE` from Information_schema.cluster_config")
 	if err != nil {
 		c.String(http.StatusBadRequest, fmt.Sprintf("%v", err))
 		return
 	}
 	for rows.Next() {
-		var component, key, value string
-		err = rows.Scan(&component, &key, &value)
+		var component, instance, key, value string
+		err = rows.Scan(&component, &instance, &key, &value)
 		if err != nil {
 			c.String(http.StatusBadRequest, fmt.Sprintf("%v", err))
 			return
 		}
-		index1[fmt.Sprintf("%v_%v", component, key)] = value
+		if _, ok := index1[fmt.Sprintf("%v_%v", component, key)]; ok {
+			index1[fmt.Sprintf("%v_%v", component, key)][instance] = value
+		} else {
+			index1[fmt.Sprintf("%v_%v", component, key)] = map[string]string{
+				instance: value,
+			}
+		}
 	}
 
-	// compare with the second db
 	result := make(map[string][]DiffItem)
 
+	index2 := make(map[string]map[string]string)
 	db2, err := sql.Open("mysql", host2)
 	if err != nil {
 		c.String(http.StatusBadRequest, fmt.Sprintf("%v", err))
 		return
 	}
-	rows, err = db2.Query("select `TYPE`, `KEY`, `VALUE` from Information_schema.cluster_config")
+	rows, err = db2.Query("select `TYPE`, `INSTANCE`, `KEY`, `VALUE` from Information_schema.cluster_config")
 	if err != nil {
 		c.String(http.StatusBadRequest, fmt.Sprintf("%v", err))
 		return
 	}
 	for rows.Next() {
-		var component, key, value string
-		err = rows.Scan(&component, &key, &value)
+		var component, instance, key, value string
+		err = rows.Scan(&component, &instance, &key, &value)
 		if err != nil {
 			c.String(http.StatusBadRequest, fmt.Sprintf("%v", err))
 			return
 		}
+		if _, ok := index2[fmt.Sprintf("%v_%v", component, key)]; ok {
+			index2[fmt.Sprintf("%v_%v", component, key)][instance] = value
+		} else {
+			index2[fmt.Sprintf("%v_%v", component, key)] = map[string]string{
+				instance: value,
+			}
+		}
+	}
+
+	// compare two config index
+	for combinedKey, value1 := range index1 {
 		var diffFlag bool
-		var value1 interface{}
-		if value1, ok := index1[fmt.Sprintf("%v_%v", component, key)]; ok {
-			diffFlag = value == value1
-			delete(index1, fmt.Sprintf("%v_%v", component, key))
+		var value2 interface{}
+		if v2, ok := index2[combinedKey]; ok {
+			diffFlag = diff2Map(value1, v2)
+			value2 = v2
+			delete(index2, combinedKey)
 		} else {
 			diffFlag = true
-			value1 = ""
 		}
 
 		if diffFlag {
+			splitList := strings.Split(combinedKey, "_")
+			component, key := splitList[0], splitList[1]
 			if c, ok := result[component]; ok {
 				result[component] = append(c, DiffItem{
 					Metrics: key,
 					Value: map[string]interface{}{
 						"start": value1,
-						"end":   value,
+						"end":   value2,
 					},
 				})
 			} else {
@@ -126,7 +145,7 @@ func ConfigReport(c *gin.Context) {
 						Metrics: key,
 						Value: map[string]interface{}{
 							"start": value1,
-							"end":   value,
+							"end":   value2,
 						},
 					},
 				}
@@ -134,17 +153,16 @@ func ConfigReport(c *gin.Context) {
 		}
 	}
 
-	fmt.Println(index1)
-
-	for combinedKey, value := range index1 {
+	// Add key not in index1 but in index2
+	for combinedKey, value2 := range index2 {
 		splitList := strings.Split(combinedKey, "_")
 		component, key := splitList[0], splitList[1]
 		if c, ok := result[component]; ok {
 			result[component] = append(c, DiffItem{
 				Metrics: key,
 				Value: map[string]interface{}{
-					"start": value,
-					"end":   "",
+					"start": "",
+					"end":   value2,
 				},
 			})
 		} else {
@@ -152,8 +170,8 @@ func ConfigReport(c *gin.Context) {
 				{
 					Metrics: key,
 					Value: map[string]interface{}{
-						"start": value,
-						"end":   "",
+						"start": "",
+						"end":   value2,
 					},
 				},
 			}
@@ -171,6 +189,17 @@ func ConfigReport(c *gin.Context) {
 		})
 	}
 	c.JSON(http.StatusOK, response)
+}
+
+func diff2Map(map1 map[string]string, map2 map[string]string) bool {
+	for _, v1 := range map1 {
+		for _, v2 := range map2 {
+			if v1 != v2 {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 func DiffReport(c *gin.Context) {
